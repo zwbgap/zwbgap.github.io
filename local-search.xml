@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>计组复习一</title>
+    <link href="/2023/06/07/%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0%E4%B8%80/"/>
+    <url>/2023/06/07/%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0%E4%B8%80/</url>
+    
+    <content type="html"><![CDATA[<h1 id="计算机系统概论"><a href="#计算机系统概论" class="headerlink" title="计算机系统概论"></a>计算机系统概论</h1><h2 id="1-计算机系统的组成"><a href="#1-计算机系统的组成" class="headerlink" title="1. 计算机系统的组成"></a>1. 计算机系统的组成</h2><p>计算机系统由硬件和软件两部分组成。</p><h3 id="1-1-硬件组成"><a href="#1-1-硬件组成" class="headerlink" title="1.1 硬件组成"></a>1.1 硬件组成</h3><p>计算机硬件包括以下几个主要部分：</p><ul><li><strong>中央处理器（Central Processing Unit，CPU）</strong>：负责执行指令、控制和处理数据。</li><li><strong>主存储器（Main Memory）</strong>：用于存储指令和数据。</li><li><strong>输入&#x2F;输出设备（Input&#x2F;Output Devices）</strong>：用于与外部世界进行交互，如键盘、显示器、磁盘等。</li><li><strong>系统总线（System Bus）</strong>：用于各个硬件组件之间的数据传输。</li></ul><h3 id="1-2-软件组成"><a href="#1-2-软件组成" class="headerlink" title="1.2 软件组成"></a>1.2 软件组成</h3><p>计算机软件包括以下两类：</p><ul><li><strong>系统软件</strong>：控制和管理计算机硬件资源，提供基本的功能和服务，如操作系统、编译器、驱动程序等。</li><li><strong>应用软件</strong>：用于解决特定的问题或满足用户的需求，如办公软件、数据库管理系统、图像处理软件等。</li></ul><h2 id="2-计算机的层次结构"><a href="#2-计算机的层次结构" class="headerlink" title="2. 计算机的层次结构"></a>2. 计算机的层次结构</h2><p>计算机的层次结构由下至上分为以下几层：</p><ol><li><strong>物理层</strong>：包括计算机的硬件电路，例如门电路、寄存器、ALU等。</li><li><strong>数字逻辑层</strong>：利用门电路和触发器等构建组合逻辑和时序逻辑电路，如加法器、多路选择器等。</li><li><strong>微程序层</strong>：利用微指令控制硬件电路的运行，实现指令的执行和控制。</li><li><strong>指令系统层</strong>：定义计算机的指令集和指令格式，如MIPS指令集、x86指令集等。</li><li><strong>操作系统层</strong>：控制和管理计算机的硬件资源，提供基本的功能和服务。</li><li><strong>高级语言层</strong>：使用高级语言编写程序，通过编译器或解释器转换为机器语言。</li><li><strong>应用程序层</strong>：用于解决特定的问题或满足用户的需求。</li></ol><h2 id="3-计算机的工作原理"><a href="#3-计算机的工作原理" class="headerlink" title="3. 计算机的工作原理"></a>3. 计算机的工作原理</h2><p>计算机的工作原理可以简单概括为以下几个步骤：</p><ol><li><strong>取指令</strong>（Instruction Fetch，IF）：从主存储器中读取指令，并将指令存入指令寄存器（IR）。</li><li><strong>指令译码</strong>（Instruction Decode，ID）：对指令进行译码，确定指令的操作类型和操作数。</li><li><strong>执行指令</strong>（Execute，EX）：根据指令的操作类型和操作数，执行相应的操作。</li><li><strong>访存取数</strong>（Memory Access，MA）：如果指令需要访问主存储器，则进行存储器读写操作。</li><li><strong>写回结果</strong>（Write Back，WB）：将执行结果写回寄存器或存储器。</li></ol><h2 id="4-计算机的性能指标"><a href="#4-计算机的性能指标" class="headerlink" title="4. 计算机的性能指标"></a>4. 计算机的性能指标</h2><p>衡量计算机性能的主要指标包括以下几个：</p><ul><li><strong>时钟周期</strong>（Clock Cycle）：指一条指令所需的时钟脉冲数。</li><li><strong>时钟频率</strong>（Clock Frequency）：时钟信号的频率，单位为赫兹（Hz）。</li><li><strong>CPI</strong>（Cycles Per Instruction）：指令的平均时钟周期数。</li><li><strong>执行时间</strong>（Execution Time）：完成一段程序所需的时间。</li><li><strong>吞吐量</strong>（Throughput）：单位时间内完成的任务数。</li></ul><h2 id="5-计算机发展的历程"><a href="#5-计算机发展的历程" class="headerlink" title="5. 计算机发展的历程"></a>5. 计算机发展的历程</h2><p>计算机发展经历了以下几个阶段：</p><ul><li><strong>电子管时代</strong>：使用电子管作为主要的电子元件，如第一台电子管计算机 ENIAC。</li><li><strong>晶体管时代</strong>：晶体管取代了电子管，计算机变得更小、更可靠、更高效。</li><li><strong>集成电路时代</strong>：集成电路（IC）的出现使得多个晶体管集成在一个芯片上，计算机性能大幅提升。</li><li><strong>超大规模集成电路时代</strong>：超大规模集成电路（VLSI）技术使得更多的晶体管集成在一个芯片上，计算机进一步提升性能。</li><li><strong>并行计算时代</strong>：利用多个处理器同时执行任务，提高计算机的并行处理能力。</li><li><strong>网络时代</strong>：计算机之间通过网络连接，实现信息的共享和通信。</li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>First Blog</title>
+    <link href="/2023/06/07/First-Blog/"/>
+    <url>/2023/06/07/First-Blog/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2023/06/07/hello-world/"/>
+    <url>/2023/06/07/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
