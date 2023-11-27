@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://www.zwbgap.me</id>
+    <title>Zwbgap&apos;s Blog</title>
+    <updated>2023-11-27T05:45:16.016Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://www.zwbgap.me"/>
+    <link rel="self" href="https://www.zwbgap.me/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://www.zwbgap.me/images/avatar.png</logo>
+    <icon>https://www.zwbgap.me/favicon.ico</icon>
+    <rights>All rights reserved 2023, Zwbgap&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Rust-quote]]></title>
+        <id>https://www.zwbgap.me/post/rust-quote/</id>
+        <link href="https://www.zwbgap.me/post/rust-quote/">
+        </link>
+        <updated>2023-10-05T15:43:13.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust-ownership]]></title>
+        <id>https://www.zwbgap.me/post/rust-ownership/</id>
+        <link href="https://www.zwbgap.me/post/rust-ownership/">
+        </link>
+        <updated>2023-10-05T15:40:30.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust-function]]></title>
+        <id>https://www.zwbgap.me/post/rust-function/</id>
+        <link href="https://www.zwbgap.me/post/rust-function/">
+        </link>
+        <updated>2023-10-03T12:12:46.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust-statements and expressions]]></title>
+        <id>https://www.zwbgap.me/post/rust-statements-and-expressions/</id>
+        <link href="https://www.zwbgap.me/post/rust-statements-and-expressions/">
+        </link>
+        <updated>2023-10-03T12:10:57.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust-char type]]></title>
+        <id>https://www.zwbgap.me/post/rust-char-type/</id>
+        <link href="https://www.zwbgap.me/post/rust-char-type/">
+        </link>
+        <updated>2023-10-03T12:06:19.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust-numeric type]]></title>
+        <id>https://www.zwbgap.me/post/rust-numeric-type/</id>
+        <link href="https://www.zwbgap.me/post/rust-numeric-type/">
+        </link>
+        <updated>2023-10-02T14:09:50.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust-basic type]]></title>
+        <id>https://www.zwbgap.me/post/rust-basic-type/</id>
+        <link href="https://www.zwbgap.me/post/rust-basic-type/">
+        </link>
+        <updated>2023-10-02T14:07:04.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust-by practice1]]></title>
+        <id>https://www.zwbgap.me/post/rust-by-practice1/</id>
+        <link href="https://www.zwbgap.me/post/rust-by-practice1/">
+        </link>
+        <updated>2023-10-02T14:04:58.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust-variable binding]]></title>
+        <id>https://www.zwbgap.me/post/rust-variable-binding/</id>
+        <link href="https://www.zwbgap.me/post/rust-variable-binding/">
+        </link>
+        <updated>2023-10-02T14:01:24.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[国庆之FlAG]]></title>
+        <id>https://www.zwbgap.me/post/Flag/</id>
+        <link href="https://www.zwbgap.me/post/Flag/">
+        </link>
+        <updated>2023-09-27T06:36:05.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[开学第一篇]]></title>
+        <id>https://www.zwbgap.me/post/002/</id>
+        <link href="https://www.zwbgap.me/post/002/">
+        </link>
+        <updated>2023-09-10T02:01:25.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[#001期 周报 : 我与暑假]]></title>
+        <id>https://www.zwbgap.me/post/001/</id>
+        <link href="https://www.zwbgap.me/post/001/">
+        </link>
+        <updated>2023-08-12T01:45:27.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[关于博客的搭建]]></title>
+        <id>https://www.zwbgap.me/post/推荐的艺术/</id>
+        <link href="https://www.zwbgap.me/post/推荐的艺术/">
+        </link>
+        <updated>2023-08-10T06:44:47.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[第一章 计算机系统漫游]]></title>
+        <id>https://www.zwbgap.me/post/CSAPP_第一章_计算机系统漫游/</id>
+        <link href="https://www.zwbgap.me/post/CSAPP_第一章_计算机系统漫游/">
+        </link>
+        <updated>2023-08-09T04:19:48.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[第一章 概述]]></title>
+        <id>https://www.zwbgap.me/post/计算机网络概述/</id>
+        <link href="https://www.zwbgap.me/post/计算机网络概述/">
+        </link>
+        <updated>2023-08-08T10:29:59.000Z</updated>
+    </entry>
+</feed>

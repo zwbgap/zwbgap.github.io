@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>第一章 概述 | Zwbgap&#39;s Blog</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://www.zwbgap.me/favicon.ico?v=1701063900303">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.zwbgap.me/styles/main.css">
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://www.zwbgap.me">Zwbgap&#39;s Blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>第一章 概述</h1>
+            <p class="article-meta">
+              2023-08-08
+              
+                <a href="https://www.zwbgap.me/tag/hAIoadUY3/" class="badge success">
+                  计网
+                </a>
+              
+            </p>
+            
+              <img src="https://www.zwbgap.me/post-images/计算机网络概述.jpg" alt="第一章 概述">
+            
+            <div class="post-content" v-pre>
+              <h2 id="本章重点"><strong>本章重点</strong></h2>
+<p>（1）基于存储转发技术的分组交换方式。</p>
+<p>（2）计算机网络的一些重要性能指标(带宽、时延、往返时间、利用率等)。</p>
+<p>（3）计算机网络的体系结构及其相关术语。</p>  
+<h2 id="11-信息时代的计算机网络"><strong>1.1 信息时代的计算机网络</strong></h2>
+<h3 id="111-计算机网络的各类应用"><strong>1.1.1 计算机网络的各类应用</strong></h3>
+<figure data-type="image" tabindex="1"><img src="https://www.zwbgap.me/post-images/1691492067257.jpg#pic_left" alt="1.1 常见的计算机网络应用" width="500" height="400" loading="lazy"></figure>
+<div align=center>1.1 常见的计算机网络应用</div>
+<figure data-type="image" tabindex="2"><img src="https://www.zwbgap.me/post-images/1691492711463.jpg" alt="1.2 计算机网络带来的负面影响" width="500" height="400" loading="lazy"></figure>
+<div align=center>1.2 计算机网络带来的负面影响</div>
+<h2 id="12-因特网概述"><strong>1.2 因特网概述</strong></h2>
+<h3 id="121-网络-互联网和因特网"><strong>1.2.1 网络、互联网和因特网</strong></h3>
+<h4 id="1-网络"><strong>1. 网络</strong></h4>
+<ul>
+<li><strong>网络（Network）</strong> 是由若干<strong>节点（Node）</strong> 和连接这些节点的<strong>链路（Link）</strong> 组成的,如图1.3所示。网络中的节点可以是计算机（笔记本电脑，台式电脑，服务器等）、网络互联设备（集线器、交换机、路由器等)、其他具有网络功能的设备（网络打印机、网络摄像头、物联网设备等）。网络中的链路可以是有线链路，也可以是无线链路。<br>
+<img src="https://www.zwbgap.me/post-images/1691500090777.png" alt="" width="400" height="300" loading="lazy"></li>
+</ul>
+<h4 id="2-互联网"><strong>2. 互联网</strong></h4>
+<ul>
+<li><strong>互联网（Internet）</strong> 是由 ** 若干网络** 和连接这些网络的 <strong>路由器</strong> 组成的。若忽略互联连节，则可将互联网看做一个覆盖范围更大的网络，因此也可称其为 <strong>“网络的网络（Network of Networks）”。</strong></li>
+</ul>
+<h4 id="3-因特网"><strong>3. 因特网</strong></h4>
+<ul>
+<li>连接在因特网上的各种通信设备（如智能手机、平板电脑、笔记本电脑、服务器、网络打印机等）称为 <strong>主机（Host）</strong> ，而 <strong>路由器</strong> 是用于网络互联的专用设备，一般不称其为主机。<br>
+<img src="https://www.zwbgap.me/post-images/1691500150121.png" alt="" width="400" height="300" loading="lazy"></li>
+<li>综上所述，我们可以将网络，互联网，因特网的区别和关系总结如下：<br>   <strong>若干节点和链路互连形成网络，而若干网络通过路由器互连形成互联网，因特网是当今世界上最大的互联网</strong>。</li>
+<li><strong>注意</strong>：
+<ul>
+<li><strong>internet</strong> 的意思是互联网，是一个通用名词，泛指由多个计算机网络互连而成的网络，在这些网络之间可以使用任意的通信协议作为通信规则。</li>
+<li><strong>Internet</strong> 的意思是因特网，是一个专用名词，专指当前全球最大的、最开放的、由众多网络和路由器互连而成的特定计算机网络。在这些网络之间必须使用 <strong>TCP/IP</strong> 协议族作为通信规则。</li>
+</ul>
+</li>
+</ul>
+<h3 id="122-因特网的发展历程"><strong>1.2.2 因特网的发展历程</strong></h3>
+<h4 id="1-因特网发展的三个阶段"><strong>1. 因特网发展的三个阶段</strong></h4>
+<p><strong>第一阶段</strong> (1969年)</p>
+<ul>
+<li>第一个分组交换网ARPANET成立,从单个网络ARPANET向互联网发展。</li>
+<li>七十年代中期，研究多种网络的互连。</li>
+<li>1983年，TCP/IP协议成为ARPANET的标准协议，标志着因特网的诞生。</li>
+</ul>
+<p><strong>第二阶段</strong> (1985年)</p>
+<ul>
+<li>1985年，NSF围绕六个大型计算机中心建设NSFNET（主干网、地区网和校园网）。</li>
+<li>1990年，ARPANET任务完成，正式关闭。</li>
+<li>1991年，美国政府将因特网主干网交给私人公司经营，并开始对接入因特网的单位收费。</li>
+</ul>
+<p><strong>第三阶段</strong> (1993年)</p>
+<ul>
+<li>1993年，NSFNET逐渐被若干个商用因特网主干网替代；政府机构不再负责因特网运营，由各种因特网服务提供商ISP来运营。</li>
+<li>1994年，万维网www技术促使因特网迅猛发展。</li>
+<li>1995年，NFNET停止使用，因特网彻底商业化。</li>
+</ul>
+<figure data-type="image" tabindex="3"><img src="https://www.zwbgap.me/post-images/1691546942003.png" alt="因特网服务提供商ISP" loading="lazy"></figure>
+<h4 id="2-因特网的标准化工作"><strong>2. 因特网的标准化工作</strong></h4>
+<p>因特网的标准化工作对其发展起到重要作用，其制定标准的一个重要特点是面向公众。因特网协会ISO C是国际性组织，负责全面管理因特网并促进其在全球范围内的发展和使用。因特网的正式标准制定经历以下四个阶段：</p>
+<ol>
+<li><strong>因特网草案</strong>（尚未成为RFC文档）。</li>
+<li><strong>建议标准</strong>（从这个阶段开始成为IFC文档）。</li>
+<li><strong>草案标准</strong>。</li>
+<li><strong>因特网标准</strong>。</li>
+</ol>
+<h4 id="3-因特网的组成"><strong>3. 因特网的组成</strong></h4>
+<p><strong>边缘部分</strong>：<br>
+  由所有连接在因特网上的主机组成。这部分用于用户直接进行通信（传送数据、音频和视频）和资源共享。<br>
+<strong>核心部分</strong>：<br>
+  包含大量网络和连接，这些网络的路由器构成核心部分，为边缘部分提供服务（提供连通性和交换）。</p>
+<h2 id="13-三种交换方式"><strong>1.3 三种交换方式</strong></h2>
+<h3 id="电路交换-circuit-switching"><strong>电路交换</strong> (Circuit Switching)</h3>
+<ul>
+<li>通过电话交换机连接电话线路的方式称为电路交换。</li>
+<li>从通信资源分配角度来看，交换是动态分配传输线路资源的一种方式。</li>
+<li>电路交换包括三个步骤：
+<ol>
+<li>建立连接（分配通信资源）。</li>
+<li>通话（一直占用通信资源）。</li>
+<li>释放连接（归还通信资源）。</li>
+</ol>
+</li>
+</ul>
+<figure data-type="image" tabindex="4"><img src="https://www.zwbgap.me/post-images/1691547172778.png" alt="电路交换" loading="lazy"></figure>
+<ul>
+<li>在传送计算机数据时，电路交换的线路传输效率通常较低。</li>
+</ul>
+<h3 id="分组交换-packet-switching"><strong>分组交换</strong> (Packet Switching)</h3>
+<ul>
+<li>发送方：构造、分组、发送分组。</li>
+<li>路由器：缓冲分组、转发分组。</li>
+<li>接收方：接收分组，还原报文。</li>
+</ul>
+<figure data-type="image" tabindex="5"><img src="https://www.zwbgap.me/post-images/1691547425567.png" alt="分组交换" loading="lazy"></figure>
+<h3 id="电路交换-报文交换-分组交换的对比"><strong>电路交换、报文交换、分组交换的对比</strong></h3>
+<figure data-type="image" tabindex="6"><img src="https://www.zwbgap.me/post-images/1691548114401.png" alt="三种交换方式的对比" loading="lazy"></figure>
+<h2 id="14-计算机网络的定义和分类"><strong>1.4 计算机网络的定义和分类</strong></h2>
+<h3 id="1-计算机网络的定义"><strong>1 计算机网络的定义</strong></h3>
+<ul>
+<li>
+<p>计算机网络的确切定义并没有统一标准。</p>
+</li>
+<li>
+<p>最简单的定义是：计算机网络是一组<strong>互相连接</strong>的<strong>自治</strong>的计算机的<strong>集合</strong>。</p>
+<ul>
+<li><strong>互联</strong>：指计算机通过有线或无线方式进行数据通信。</li>
+<li><strong>自治</strong>：指独立的计算机，拥有自己的硬件和软件，能够独立运行和使用。</li>
+</ul>
+</li>
+<li>
+<p>更精确的定义是：计算机网络主要由<strong>通用的、可编程硬件互连</strong>而成，这些硬件并非专门用于实现特定目的（如传送数据或视频信号）。这些可编程硬件可以<strong>传输多种类型的数据</strong>，支持广泛和不断增长的应用。</p>
+<ul>
+<li>计算机网络连接的硬件不仅限于一般计算机，还包括智能手机等智能硬件。</li>
+<li>计算机网络不仅用于传送数据，还能支持多种应用（包括未来可能出现的各种应用）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-计算机网络的分类"><strong>2 计算机网络的分类</strong></h3>
+<ul>
+<li>
+<p>按交换技术分类：</p>
+<ul>
+<li>电路交换网络</li>
+<li>报文交换网络</li>
+<li>分组交换网络</li>
+</ul>
+</li>
+<li>
+<p>按使用者分类：</p>
+<ul>
+<li>公用网</li>
+<li>专用网</li>
+</ul>
+</li>
+<li>
+<p>按传输介质分类：</p>
+<ul>
+<li>有线网络</li>
+<li>无线网络</li>
+</ul>
+</li>
+<li>
+<p>按覆盖范围分类：</p>
+<ul>
+<li>广域网 (WAN)</li>
+<li>城域网 (MAN)</li>
+<li>局域网 (LAN)</li>
+<li>个域网 (PAN)</li>
+</ul>
+</li>
+<li>
+<p>按拓扑结构分类：</p>
+<ul>
+<li>总线型网络</li>
+<li>星型网络</li>
+<li>环形网络</li>
+<li>网状型网络</li>
+</ul>
+</li>
+</ul>
+<h2 id="15-计算机网络的性能指标"><strong>1.5 计算机网络的性能指标</strong></h2>
+<ul>
+<li>计算机网络的性能可以从多个方面进行衡量，常用的性能指标有以下八个：</li>
+</ul>
+<h3 id="1-速率">1. <strong>速率</strong>：</h3>
+<ul>
+<li>比特是计算机中数据量的单位，也是信息论中信息量的单位。一个比特就是一个二进制数字中的一个1或0。</li>
+<li>速率是指连接在计算机网络上的主机在数字信道上传送比特的速率，也称为比特率或数据率。</li>
+</ul>
+<figure data-type="image" tabindex="7"><img src="https://www.zwbgap.me/post-images/1691550972548.png" alt="速率" loading="lazy"></figure>
+<h3 id="2-带宽">2. <strong>带宽</strong>：</h3>
+<ul>
+<li>在模拟信号系统中，带宽表示<strong>信号</strong>中各种不同频率成分所占据的<strong>频率范围</strong>。单位：Hz（KHz, MHz, GHz）。</li>
+<li>在计算机网络中，带宽表示网络<strong>通信线路</strong>传送数据的能力，即单位时间内从一点到另一点的 <strong>“最高数据传输率”</strong>。</li>
+<li>事实上，”带宽”的这两种表述之间有着密切的联系。一条通信线路的”频带带宽”越宽其所传输数据的”最高数据率”也越高。</li>
+</ul>
+<h3 id="3-吞吐量">3. <strong>吞吐量</strong>：</h3>
+<ul>
+<li>吞吐量表示<strong>单位时间内通过某个网络（或信道、接口）的数据量</strong>。</li>
+<li>吞吐量<strong>受网络的带宽或额定速率的限制</strong>。</li>
+</ul>
+<h3 id="4-时延">4. <strong>时延</strong>：</h3>
+<ul>
+<li>从数据开始进入网络到其到达目的地所经历的时间。</li>
+</ul>
+<figure data-type="image" tabindex="8"><img src="https://www.zwbgap.me/post-images/1691551488045.png" alt="时延" loading="lazy"></figure>
+<ul>
+<li><strong>速率、带宽、吞吐量和时延</strong></li>
+</ul>
+<figure data-type="image" tabindex="9"><img src="https://www.zwbgap.me/post-images/1691551572539.png" alt="总结" loading="lazy"></figure>
+<h3 id="5-时延带宽积">5. <strong>时延带宽积</strong>：</h3>
+<ul>
+<li><strong>时延带宽积</strong> = <strong>传播时延</strong> x <strong>带宽</strong>。</li>
+<li>若发送端连续发送数据,则在所发送的第一个比特即将到达终点时，发送端就已经发送了时延带宽积个比特。</li>
+<li>链路的时延带宽积又称为以<strong>比特为单位的链路长度</strong>。</li>
+</ul>
+<h3 id="6-往返时间-rtt">6. <strong>往返时间 (RTT)</strong>：</h3>
+<ul>
+<li>信息在因特网上双向传输时所经历的时间（Round-Trip Time），也是一个重要的性能指标。</li>
+</ul>
+<figure data-type="image" tabindex="10"><img src="https://www.zwbgap.me/post-images/1691552055014.png" alt="往返时间" loading="lazy"></figure>
+<h3 id="7-利用率">7. <strong>利用率</strong>：</h3>
+<ul>
+<li>信道利用率表示某信道被利用的时间比例；</li>
+<li>网络利用率是全网络信道利用率的加权平均。</li>
+</ul>
+<figure data-type="image" tabindex="11"><img src="https://www.zwbgap.me/post-images/1691552135243.png" alt="利用率" loading="lazy"></figure>
+<h3 id="8-丢包率">8. <strong>丢包率</strong>：</h3>
+<ul>
+<li>传输过程中<strong>丢失的分组数量与总分组数量的比率</strong>，反映网络拥塞情况。</li>
+<li>丢包率具体可分为不同类型，包括接口丢包率、节点丢包率、链路丢包率、路径丢包率、网络丢包率等。</li>
+<li>分组的丢失主要有两种情况：
+<ol>
+<li><strong>分组在传输过程中出现误码，被节点丢弃</strong>：在传输过程中，分组可能因为噪声、干扰等原因而出现错误，这些错误会导致节点在接收时无法正确解码分组，因此被丢弃。</li>
+<li><strong>分组到达一台队列已满的分组交换机时被丢弃</strong>：如果传输速率超过了交换机的处理能力，传入的分组可能会在交换机的缓冲区排队等待处理。如果缓冲区已满，新的分组就会被丢弃。在高通信负载下，这种情况可能导致网络拥塞。</li>
+</ol>
+</li>
+<li>丢包率能够反映网络的拥塞程度，不同丢包率对应不同的拥塞情况：
+<ul>
+<li>无拥塞时路径丢包率为0。</li>
+<li>轻度拥塞时路径丢包率为1%到4%。</li>
+<li>严重拥塞时路径丢包率为5%到15%。</li>
+</ul>
+</li>
+<li><strong>时延带宽积、往返时间、利用率和丢包率</strong></li>
+</ul>
+<figure data-type="image" tabindex="12"><img src="https://www.zwbgap.me/post-images/1691553474024.png" alt="" loading="lazy"></figure>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://www.zwbgap.me/post/Hello-My-Blog/">
+                <h3 class="post-title">
+                  Hello，My Blog
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://www.zwbgap.me/images/avatar.png?v=1701063900303" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-quote/">Rust-quote</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-ownership/">Rust-ownership</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-function/">Rust-function</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-statements-and-expressions/">Rust-statements and expressions</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-char-type/">Rust-char type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-numeric-type/">Rust-numeric type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-basic-type/">Rust-basic type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-by-practice1/">Rust-by practice1</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-variable-binding/">Rust-variable binding</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-records-day01/">Rust-about </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge secondary">
+          rust
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge success">
+          学习记录
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/6BEDgZYom/" class="badge success">
+          随记
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/O_Ov6_TaM/" class="badge success">
+          周报
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/ZXW-fdLxoS/" class="badge secondary">
+          博客
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAqcXpysJ/" class="badge secondary">
+          CSAPP
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAIoadUY3/" class="badge warning">
+          计网
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://www.zwbgap.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

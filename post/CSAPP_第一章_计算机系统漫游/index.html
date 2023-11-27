@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>第一章 计算机系统漫游 | Zwbgap&#39;s Blog</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://www.zwbgap.me/favicon.ico?v=1701063900303">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.zwbgap.me/styles/main.css">
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://www.zwbgap.me">Zwbgap&#39;s Blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>第一章 计算机系统漫游</h1>
+            <p class="article-meta">
+              2023-08-09
+              
+                <a href="https://www.zwbgap.me/tag/hAqcXpysJ/" class="badge success">
+                  CSAPP
+                </a>
+              
+            </p>
+            
+              <img src="https://www.zwbgap.me/post-images/CSAPP_第一章_计算机系统漫游.png" alt="第一章 计算机系统漫游">
+            
+            <div class="post-content" v-pre>
+              <h3 id="问题"><strong>问题</strong></h3>
+<ol>
+<li>信息的两个要素。<br>
+位 + 上下文。</li>
+<li>文本文件是有什么组成的？<br>
+由ASCII标准表是的字符。</li>
+<li>从源程序到目标程序的四个阶段？<br>
+预处理，编译，汇编，链接。</li>
+<li>系统硬件组成的四个部分？<br>
+处理器，主存，I/O设备，总线。</li>
+<li>从逻辑上看主存是什么样的？<br>
+一串线性字节数组，每个字节有唯一的地址。</li>
+<li>主存硬件上是什么组成的？<br>
+动态随机存储内存（DRAM）。</li>
+<li>处理器的核心是什么？它主要干什么？<br>
+程序计数器，存储下一条指令的地址。</li>
+<li>用最简单的方式描述处理器运行的过程？<br>
+执行PC所指向的指令，然后更新PC。</li>
+<li>指令操作围绕哪三个部件执行？<br>
+主存，寄存器和ALU（运算器）。寄存器存放指令、数据、状态等，ALU进行运算。</li>
+<li>四个指令操作：加载、存储、操作、跳转分别是什么？<br>
+（1） 加载（Load）：这是从内存中将数据加载到寄存器或其他处理器内部的操作。<br>
+（2） 存储（Store）：这是将数据从寄存器或其他处理器内部存储到内存中的操作。<br>
+（3）操作（Arithmetic/Logical）：这涉及到在处理器内部执行算术或逻辑运算的操作。算术操作包括加法、减法、乘法、除法等；逻辑操作涉及位操作，如与、或、非、异或等。<br>
+（4）跳转（Jump）：这是用于改变程序执行顺序的操作。</li>
+<li>指令集架构和微体系架构分别是什么？<br>
+描述指令的效果。硬件的实现方式。</li>
+<li>CPU 执行一个目标文件的流程？<br>
+把文件存磁盘读取到寄存器，再放到主存（直接存取可以实现不经过寄存器），执行目标文件的指令。</li>
+<li>从源程序到得出运行结果的整个流程？<br>
+源程序 -&gt; 目标程序 -&gt; 处理器执行目标程序</li>
+<li>主存比磁盘快多少？寄存器比磁盘快多少？<br>
+千万倍，百倍。</li>
+<li>L1 cache 位于哪里？有多大？有多快？L2 呢？<br>
+CPU上，几十MB，比 L2 快 5 倍；L2 通过特殊的总线与 CPU 相连，几百 MB~几 GB，比主存快 5~10 倍。</li>
+<li>高速缓存是怎么用的？<br>
+存储需要经常访问的数据。</li>
+<li>存储器层次结构有几层，主要思想是什么？<br>
+7层，用上一层做下一层的高速缓存。</li>
+<li>操作系统的三个基本抽象概念是什么？<br>
+文件、虚拟内存、进程。</li>
+<li>什么是进程？进程有什么特点？<br>
+<font color="red">系统正在执行的程序，系统在某一时刻只能执行一个进程。</font></li>
+<li>什么是操作系统内核？主要做什么？<br>
+操作系统常驻主存的部分，负责管理进程的切换，方式是上下文切换。</li>
+<li>什么是虚拟地址空间？由几个部分组成？<br>
+进程看到的是一个虚拟的地址空间。<font color="red">从低到高依次是程序代码和数据、运行时堆、共享库、用户栈、内核虚拟内存。</font></li>
+<li>并发和并行的区别，和顺序执行的区别？<br>
+并发是交错执行，并行是同时进行，顺序是执行完一个再执行另一个。</li>
+<li>什么是线程级并行？<br>
+四个核一个核一个线程就是四线程并行。</li>
+<li>什么是超线程？<br>
+超线程可以实现一个核两个线程。因为如PC、寄存器等硬件有多个备份，可以在一个线程需要等待拷贝的时候执行另一个线程。相当于充分利用硬件交错执行不同线程。</li>
+<li>什么是指令级并行？<br>
+一个指令需要20多个时钟周期，并行后一秒可以执行2~4个指令。</li>
+<li>什么是单指令、多数据并行？<br>
+一个指令的几个简单操作并行执行（硬件层面）。</li>
+<li>什么是指令集架构？<br>
+一种抽象，看起来好像是指令顺序依次执行，实际上背地里是指令级并行。</li>
+</ol>
+<h3 id="11-信息就是位-上下文"><strong>1.1 信息就是位 + 上下文</strong></h3>
+<h4 id="程序"><strong>程序</strong></h4>
+<ul>
+<li>程序的生命周期从<strong>源程序（源文件）</strong> 开始。<font color="red"><strong>源程序实际上就是由 0 和 1 组成的位序列</strong></font >。</li>
+<li>一般由<strong>ASCII标准</strong>来表示<strong>文本字符</strong>，实际上使用一个字节的整数值来表示一种字符。</li>
+<li>源文件中每个文本行都是以看不见的 '\n' 结束的。</li>
+<li>只由ASCII字符组成的文件称为文本文件，其他都是二进制文件。如.cpp 文件就是文本文件。</li>
+<li>系统中的<strong>所有信息都是有一串比特（bit：位）表示的，区分不同数据对象的唯一方法就是根据上下文</strong>。</li>
+</ul>
+<h4 id="c语言的特点"><strong>C语言的特点</strong></h4>
+<ol>
+<li>C 语言小而简单</li>
+<li>C 语言是为了实现 unix 而设计的</li>
+<li>C 语言与 unix 关系密切</li>
+</ol>
+<p>C 语言是系统级编程的首选，也非常适用于应用级程序。</p>
+<h3 id="12-程序被其他程序翻译成不同的格式"><strong>1.2  程序被其他程序翻译成不同的格式</strong></h3>
+<pre><code class="language-c++">    #include &lt;stdio.h&gt;
+    int main(){
+        printf(&quot;hello, world!\n&quot;);
+        return 0;
+    }
+</code></pre>
+<h4 id="从源程序到目标程序的font-colorred四个步骤font"><strong>从源程序到目标程序的<font color="red">四个步骤</font></strong>:</h4>
+<ol>
+<li>源程序被<font color="red">预处理器</font>处理得到<font color="red">修改后的源程序</font>（文本文件，hello.i）</li>
+<li>再由<font color="red">编译器</font>处理得到<font color="red">汇编程序</font>（文本文件，hello.s）</li>
+<li>汇编程序由<font color="red">汇编器</font>处理得到<font color="red">可重定位目标程序</font>（二进制文件,hello.o）</li>
+<li>最后由<font color="red">链接器</font>链接得到<font color="red">可执行目标程序</font>（二进制文件,hello）</li>
+</ol>
+<ul>
+<li><strong>预处理阶段</strong>：预处理器（cpp）根据以字符#开头的命令，修改原始的C程序。比如<code>hello.c</code>中第一行的<code>#include &lt;stdio.h&gt;</code>命令告诉预处理器读取洗头文件<code>stdio.h</code>的内容，并把它直接插入程序文本中。最终得到另一个C程序，通常是以<code> .i</code> 作为文件扩展名。</li>
+<li><strong>编译阶段</strong>：编译器（ccl）将文本文件<code>hello.i</code>翻译成文本文件<code>hello.s</code>，它包含一个汇编语言程序。该程序包含函数<code>main</code>的定义，如下所示：</li>
+</ul>
+<pre><code class="language-asm">    1   main:
+    2     subq  $8,  %rsp
+    3     movl  $.LC0,  %edi
+    4     call  puts
+    5     movl  $0,  %eax
+    6     addq  $8,  %rsp
+    7     ret
+</code></pre>
+<ul>
+<li><strong>汇编阶段</strong>：接下来，汇编器（as）将<code>hello.s</code>翻译成机器语言指令，将这些指令打包成一种叫做可重定位目标程序（relocatable object program）的格式，并将结果保存在目标文件<code>hello.o</code>中，<code>hello.o</code>文件是一个二进制文件，它包含的17个字节是函数<code>main</code>的指令编码。</li>
+<li><strong>链接阶段</strong>：应该注意的是，<code>hello</code>程序调用了<code>printf</code>函数，它是每个C编译器都提供的标准C库中的一个函数。<code>printf</code>函数存在于一个名为<code>printf.o</code>的单独预编译好了的目标文件中。链接器（ld）负责将该文件合并到我们的<code>hello.o</code>文件中，最终得到一个可执行目标文件<code>hello</code>文件，可以被加载到内存中，由系统执行。</li>
+</ul>
+<h3 id="13-了解编译系统如工作是大有用处的"><strong>1.3 了解编译系统如工作是大有用处的</strong></h3>
+<h4 id="用处"><strong>用处</strong></h4>
+<ol>
+<li>优化程序性能</li>
+<li>理解链接时出现的错误</li>
+<li>避免安全漏洞</li>
+</ol>
+<h3 id="14-处理器font-colorred读并解释font储存在内存中的指令"><strong>1.4 处理器<font color="red">读并解释</font>储存在内存中的指令</strong></h3>
+<p>shell是一个<font color="red">命令行解释器</font>,它输出一个提示符（&gt;&gt;）,等待输入一个命令行，然后执行命令。如果输入的是可执行文件的名字，就执行该文件。</p>
+<h4 id="141-系统的硬件组成"><strong>1.4.1 系统的硬件组成</strong></h4>
+<p>主要包括<font color="red">总线、I/O设备、处理器、主存储器</font>四个部分。</p>
+<h5 id="总线"><strong>总线</strong></h5>
+<ul>
+<li>总线<font color="red">一次可以传输一个定长的字节快</font>，称为字。<font color="red">64位系统即总线一次可以传输64位（8字节）</font>，这里一个字就是8字节。</li>
+</ul>
+<h5 id="io设备"><strong>I/O设备</strong></h5>
+<ul>
+<li>每个I/O设备通过一个<strong>控制器</strong>或<strong>适配器</strong>与I/O总线相连。</li>
+<li><strong>控制器</strong>是I/O设备本身或主板上的芯片组，<strong>适配器</strong>则是一块插在主板上的卡。</li>
+</ul>
+<h5 id="主存"><strong>主存</strong></h5>
+<ul>
+<li>主存是由一组<strong>动态随机存取内存（DRAM）</strong> 组成的。</li>
+<li><font color="red">从逻辑上看，存储器是一个线性的字节数组，每个字节都有唯一的地址</font>。</li>
+</ul>
+<h5 id="处理器"><strong>处理器</strong></h5>
+<ul>
+<li>处理器是<font color="red">解释存储在主存中指令</font>的引擎。</li>
+<li>处理器的<strong>核心</strong>是一个<strong>程序计数器（PC）</strong> 。</li>
+<li>程序计数器是一个大小为<strong>一个字</strong>的存储设备，<font color="red">存储CPU即将执行的<strong>下一条指令的地址</strong></font>.</li>
+<li><font color="red">处理器就是在不断执行程序计数器指向的指令。每执行一条，程序计数器就更新一下，指向下一条指令</font>。</li>
+<li>处理器会按照<font color="red"><strong>指令执行模型（指令集架构）</strong> 解释指令中的位并执行相应操作</font>。</li>
+<li>每条指令的操作是围绕<font color="red"><strong>主存、寄存器文件、算术逻辑单元（ALU）</strong></font> 进行的。</li>
+</ul>
+<h5 id="寄存器文件"><strong>寄存器文件</strong></h5>
+<ul>
+<li>单个字长，有唯一的名字。</li>
+</ul>
+<h5 id="alu"><strong>ALU</strong></h5>
+<ul>
+<li>简单指令的操作：
+<ul>
+<li>加载：从主存复制一个字或字节到寄存器，覆盖原来内容。</li>
+<li>存储：从寄存器复制一个字或字节到主存，覆盖原来内容。</li>
+<li>操作：把两个寄存器的内容复制到 ALU，ALU 对这两个字做算术运算，并把结果存到一个寄存器中。</li>
+<li>跳转：从指令中抽取一个字复制到程序计数器中，覆盖原来内容。</li>
+</ul>
+</li>
+</ul>
+<p><strong>区分处理器指令集架构和微体系架构</strong>：</p>
+<ul>
+<li><font color="red"><strong>指令集架构</strong></font>：每条机器指令的效果。</li>
+<li><font color="red"><strong>微体系架构</strong></font>：处理器实际上是如何实现的。</li>
+</ul>
+<h4 id="142-运行hello程序"><strong>1.4.2 运行hello程序</strong></h4>
+<ul>
+<li>执行目标文件时，shell程序<font color="red">将位于磁盘目标文件中的字符逐个读入寄存器，然后放到主存中</font>。之后<font color="red">处理器就开始执行目标文件的机器语言指令，从<code>mian</code>程序开始</font>。利用<strong>直接存储器存取（DMA）</strong> 可以不通过寄存器，直接将数据从磁盘读到内存。</li>
+<li><strong>整个流程</strong>：<font color="red">读取文件字符到寄存器 -&gt; 存储到主存 -&gt; 执行指令 -&gt; 加载<code>hello wolrd</code>到寄存器 -&gt; 复制到显示器 -&gt; 显示</font></li>
+</ul>
+<h3 id="15-高速缓存至关重要"><strong>1.5 高速缓存至关重要</strong></h3>
+<ul>
+<li>从主存读取一个字比磁盘快 <strong>1000 万倍</strong>。</li>
+<li>从寄存器文件读取比主存快 <strong>100 倍</strong>。</li>
+<li><strong>高速缓存（cache）用来解决处理器和主存间的差异</strong>。</li>
+<li><font color="red"><strong>L1高速缓存</strong>位于CPU上，容量为数万字节（<strong>几十MB</strong>）。L1比L2快5倍。</font></li>
+<li><font color="red"><strong>L2高速缓存</strong>通过<strong>一条特殊的总线</strong>与CPU连接，容量为数十万到数百万字节（<strong>几百MB到几GB</strong>）。L2比主存快<strong>5~10</strong>倍。</font></li>
+<li>通过让高速缓存里<strong>存放可能经常访问的数据</strong>，让大部分的内存操作都在高速缓存中完成。</li>
+</ul>
+<h3 id="16-存储设备形成层析结构"><strong>1.6 存储设备形成层析结构</strong></h3>
+<ul>
+<li>存储器结构共7层，<strong>主要思想</strong>是<font color="red">上一层的存储器作为低一层的高速缓存。</font></li>
+<li>从上到下，容量更大，运行更慢，每字节价格更便宜。
+<ul>
+<li>0层：寄存器</li>
+<li>1层：L1高速缓存（SRAM）</li>
+<li>2层：L2高速缓存(SRAM)</li>
+<li>3层：L3高速缓存（SRAM）</li>
+<li>4层：主存（DRAM）</li>
+<li>5层：本地二级存储（本地磁盘）</li>
+<li>6层：远程二级存储（分布式文件系统，Web服务器）</li>
+</ul>
+</li>
+</ul>
+<h3 id="17-操作系统管理硬件"><strong>1.7 操作系统管理硬件</strong></h3>
+<ul>
+<li>操作系统的<strong>两个基本功能</strong>：
+<ol>
+<li>防止硬件被失控的应用程序滥用。</li>
+<li><font color="red">向应用程序提供简单一致的机制来控制复杂的低级硬件设备</font>。</li>
+</ol>
+</li>
+<li>操作系统所应用的<strong>三个基本的抽象概念</strong>：
+<ol>
+<li><font color="red"><strong>进程</strong></font>：对处理器、主存和 I/O 设备的抽象表示。</li>
+<li><font color="red"><strong>虚拟内存</strong></font>：对内存和磁盘的抽象表示。</li>
+<li><font color="red"><strong>文件</strong></font>：对 I/O 设备的抽象表示。</li>
+</ol>
+</li>
+</ul>
+<h4 id="171-进程"><strong>1.7.1 进程</strong></h4>
+<ul>
+<li><font color="red"><strong>进程</strong></font>：对操作系统<font color="red">正在运行的程序</font>的一种抽象。</li>
+<li><font color="red"><strong>并发运行</strong>：一个进程的指令和另一个进程的指令是交错执行的。一个系统可以同时运行多个进程，实际上这些进程是并发运行的。</font></li>
+<li>操作系统通过<font color="red"><strong>上下文切换</strong></font>来实现并发运行。上下文是跟踪进程运行所需的所有<font color="red"><strong>状态信息</strong></font>，可能存在于PC、寄存亲文件、主存等地方。</li>
+<li><font color="red"><strong>任何时刻，单处理只能执行一个进程的代码</strong></font>。</li>
+<li>操作系统<font color="red"><strong>内核</strong></font>是<font color="red">操作系统代码常驻内存的部分，从一个进程到另一个进程的转换是由内核管理的</font>。</li>
+<li>内核<font color="red">不是一个独立的进程</font>，是一系列代码和数据结构的集合。</li>
+<li>当应用程序需要操作系统的某些操作时，就把<font color="red">控制权传递给内核</font>，内核完成操作后返回应用程序。</li>
+</ul>
+<h4 id="172-线程"><strong>1.7.2 线程</strong></h4>
+<ul>
+<li><font color="red"><strong>一个进程是由多个线程组成</strong></font>，每个线程<font color="red">都运行在进程的上下文中，共享同样的代码和全局数据</font>。</li>
+<li><font color="red">多线程之间比多进程之间更容易共享数据</font>，且线程一般来说比进程更高效。</li>
+</ul>
+<h4 id="173-虚拟内存"><strong>1.7.3 虚拟内存</strong></h4>
+<ul>
+<li>机器程序将内存视为一个庞大的字节数组，称为<font color="red"><strong>虚拟内存</strong></font>。</li>
+<li>内存的每个字节由地址来标识，所有可能地址的集合就是<font color="red"><strong>虚拟地址空间</strong></font>。</li>
+<li><font color="red">虚拟内存使每个进程都以为自己独占了主存。每个进程看到的内存都是<strong>一致的</strong>，即<strong>虚拟地址空间</strong></font>。</li>
+<li>在Linux中，每个进程看到的虚拟地址空间由以下几个部分组成：
+<ol>
+<li><font color="red"><strong>程序代码和数据</strong></font></li>
+<li><font color="red"><strong>堆（运行时堆）</strong></font></li>
+<li><font color="red"><strong>共享库</strong></font></li>
+<li><font color="red"><strong>栈（用户栈）</strong></font></li>
+<li><font color="red"><strong>内核虚拟内存</strong></font></li>
+</ol>
+</li>
+<li>地址<font color="red">从低到高</font>，最高层的<font color="red"><strong>内核虚拟内存</strong></font>保存的是<font color="red">操作系统中的代码和数据，这部分每个进程都一样</font>。</li>
+<li><strong>程序代码和数据</strong>：对所有进程来说，代码都是从同一个固定地址开始，紧接着是<font color="red">与全局变量对应的数据区</font>。代码和数据区都是<font color="red">按照可执行文件的内容初始化的</font>。代码和数据区<font color="red">在进程开始运行时就被指定了大小</font>。</li>
+<li><strong>堆</strong>：运行时堆是根据<code>malloc</code>和<code>free</code>函数的调用<font color="red">在运行时<strong>动态地</strong>扩展和收缩的</font>。</li>
+<li><strong>共享库</strong>：地址空间的中间部分用来存放<font color="red">共享库的代码和数据。如C标准库、数学库等都属于共享库</font>。</li>
+<li><strong>栈</strong>：用户栈和堆一样，<font color="red">在程序执行期间可以<strong>动态地扩展和收缩</strong></font>，编译器用它来<font color="red"><strong>实现函数调用</strong></font>。当<font color="red">调用函数时，栈增长，从函数返回时，栈收缩</font>。</li>
+</ul>
+<h4 id="174-文件"><strong>1.7.4 文件</strong></h4>
+<ul>
+<li><font color="red">文件就是<strong>字节序列</strong></font>，仅此而已。</li>
+<li><font color="red">每个I/O设备</font>，包括磁盘、键盘、显示器、网络，<font color="red">都可以看成是网络</font>。</li>
+</ul>
+<h3 id="18-系统之间利用网络通信"><strong>1.8 系统之间利用网络通信</strong></h3>
+<ul>
+<li>从一个单独的系统而言，<font color="red">网络可以视为一个I/O设备</font>。<br>
++以在一个远端服务器运行程序为例，在本地输入，在远端执行，执行结果发送回本地输出。</li>
+</ul>
+<h3 id="19-主要主题"><strong>1.9 主要主题</strong></h3>
+<h4 id="191-amdahl-定律"><strong>1.9.1 Amdahl 定律</strong></h4>
+<ul>
+<li>Amdahl 定律的主要观点：要加速整个系统，必须是提升全系统中相对大的部分。</li>
+</ul>
+<h4 id="192-并发和并行"><strong>1.9.2 并发和并行</strong></h4>
+<ul>
+<li>区分并发与并行：
+<ul>
+<li><font color="red"><strong>并发</strong></font>：一个通用的概念，指一个同时具有多个活动的系统</li>
+<li><font color="red"><strong>并行</strong></font>：用并发来使系统运行得更快</li>
+</ul>
+</li>
+<li>并行可以在多个抽象层次上运用。<font color="red">从高到低有以下三个层次：<br>
+</font></li>
+</ul>
+<ol>
+<li><font color="red"><strong>线程级并行</strong></font>
+<ul>
+<li>传统意义上的并发执行是通过单处理器在进程间快速切换模拟出来的。</li>
+<li>多处理器系统由一个操作系统控制多个 CPU。结构如下</li>
+</ul>
+</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://www.zwbgap.me/post-images/1691580612267.png" alt="高速缓存" loading="lazy"></figure>
+<ul>
+<li>L1 高速缓存被分为两个部分：<font color="red"> 一个保存最近取到的指令，一个存放数据。</font></li>
+<li><strong>超线程</strong>又称<strong>同时多线程</strong>，它允许<font color="red">一个 CPU 执行多个控制流</font>。 CPU <font color="red">有的硬件有多个备份，比如程序计数器和寄存器文件，而其他硬件只有一份，比如浮点算术运算单元</font>。常规 CPU <font color="red">需要约** 20000** 个时钟周期来切换线程</font>，超线程 CPU 可以<font color="red">在<strong>单个周期</strong>的基础上切换线程</font>，比如一个线程在等待数据装在到高速缓存，CPU 就可以去执行另一个线程。</li>
+<li>i7 处理器每个核执行两个线程，所以是<font color="red">** 4 核 8 线程**</font>，8 个线程都并行执行。</li>
+</ul>
+<ol start="2">
+<li><font color="red"><strong>指令级并行</strong></font>
+<ul>
+<li><font color="red">每条指令从开始到结束一般需要 20 个或更多的时钟周期</font>，通过指令级并行，可以实现每个周期 2~4 条指令的执行速率。</li>
+<li>如果比一个周期一条指令更快，就称为<strong>超标量处理器</strong>，现在一般都是超标量。</li>
+</ul>
+</li>
+<li><font color="red"><strong>单指令、多数据并行</strong></font>
+<ul>
+<li>在最低层次上，现代处理器允许<font color="red">一条指令产生多个可以并行执行的操作</font>，称为单指令、多数据并行，即 SIMD 并行。</li>
+</ul>
+</li>
+</ol>
+<h4 id="193-计算机系统中抽象的重要性"><strong>1.9.3 计算机系统中抽象的重要性</strong></h4>
+<figure data-type="image" tabindex="2"><img src="https://www.zwbgap.me/post-images/1691581319490.png" alt="操作系统的抽象" loading="lazy"></figure>
+<ul>
+<li><font color="red"><strong>指令集架构</strong>是对CPU硬件的抽象</font>，CPU<font color="red">看起来像一次只执行机器代码程序的一条指令，实际上底层硬件并行地执行多条指令</font>。</li>
+<li><strong>虚拟机</strong>是对整个计算机系统的抽象，包括操作系统、处理器和程序。</li>
+</ul>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://www.zwbgap.me/post/计算机网络概述/">
+                <h3 class="post-title">
+                  第一章 概述
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://www.zwbgap.me/images/avatar.png?v=1701063900303" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-quote/">Rust-quote</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-ownership/">Rust-ownership</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-function/">Rust-function</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-statements-and-expressions/">Rust-statements and expressions</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-char-type/">Rust-char type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-numeric-type/">Rust-numeric type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-basic-type/">Rust-basic type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-by-practice1/">Rust-by practice1</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-variable-binding/">Rust-variable binding</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-records-day01/">Rust-about </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge success">
+          rust
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge ">
+          学习记录
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/6BEDgZYom/" class="badge ">
+          随记
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/O_Ov6_TaM/" class="badge success">
+          周报
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/ZXW-fdLxoS/" class="badge ">
+          博客
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAqcXpysJ/" class="badge warning">
+          CSAPP
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAIoadUY3/" class="badge secondary">
+          计网
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://www.zwbgap.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

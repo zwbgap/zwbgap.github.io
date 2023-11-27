@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>关于博客的搭建 | Zwbgap&#39;s Blog</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://www.zwbgap.me/favicon.ico?v=1701063900303">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.zwbgap.me/styles/main.css">
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://www.zwbgap.me">Zwbgap&#39;s Blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>关于博客的搭建</h1>
+            <p class="article-meta">
+              2023-08-10
+              
+                <a href="https://www.zwbgap.me/tag/ZXW-fdLxoS/" class="badge warning">
+                  博客
+                </a>
+              
+                <a href="https://www.zwbgap.me/tag/6BEDgZYom/" class="badge success">
+                  随记
+                </a>
+              
+            </p>
+            
+              <img src="https://www.zwbgap.me/post-images/推荐的艺术.jpg" alt="关于博客的搭建">
+            
+            <div class="post-content" v-pre>
+              <h3 id="关于博客-前言"><strong>关于博客 · 前言</strong></h3>
+<p>正如上次所说，自己准备写个人博客已经很久了，在学校期间使用<strong>Github Pages+hexo</strong>搭建静态博客，但是受限于国内网络原因，使用git上传总是频频出错，并且自己也不知道应该写点什么。这就是自己直到八月才开始正式写的原因。</p>
+<p>前几天在Telegram频道<a href="https://t.me/FindBlog"><font color ="orange">@FindBlog</font></a>中参与了一个讨论：</p>
+<pre><code>如果你的朋友想写博客，你会给Ta推荐哪一种搭建博客的工具和方式？
+前提： 你的朋友是小白，不懂技术，不懂代码。
+</code></pre>
+<p>想来这种是符合自己的情况的，今天，有幸在xlog网站发现了该频道的频道主<a href="https://blog.eirms.com/"><font color ="red">@胡鹤仙</font></a>并拜读相关博客。在频道的讨论中提到了很多方案和工具，在这其中，我便注意到了<font color="red"><code>Gridea</code></font>和<font color="red"><code>xLog</code></font>这两种方案。</p>
+<h3 id="从简单到复杂"><strong>从简单到复杂</strong></h3>
+<p>事实上，在学习和使用某类产品或者服务的时候，我们的原则都应该是从简单到复杂。任何事物的学习都是一个循序渐进的过程。写博客更应如此。</p>
+<p>关于上面的讨论，通过参与讨论，以及他人的启发，也有了一定的感想。</p>
+<p>首先应该排除<font color ="orange">Hugo</font>、<font color ="orange">Hexo</font>、<font color ="orange">Jekyll</font>等静态博客程序，因为从部署环境、生成博客、发布内容等一系列的流程对于小白来说还是比较复杂，博客可以每个人都写，而关于Github、Git这类工具和网站，非相关技术人管或许根本就不了解。值得一提的是，这类静态博客适用人数还是较多的，因此也有着相对完善的社区环境，遇到问题往往可以很快找到解决方案。</p>
+<p>接着排除使用<font color ="orange">Notion</font>作为博客的程序，比如<font color ="orange">Notion</font>，因为这种也需要对Notion的操作有着较为详细的了解。初学者使用起来需要一定的时间去上手了解。</p>
+<p>而<font color ="orange">WordPress</font>、<font color ="orange">Typecho</font>等动态博客程序有所优势，但是看起来只需要注册域名，购买服务器或者虚拟主机、上传源码程序和主题配置，就可以写博客。但实际上每一步的操作都有一定的高门槛，需要使用者非常细心，耐心，且有较高的学习能力。作为初学者，大概写博客只是想记录生活和学习，做一个“小透明”，注册域名和购买虚拟主机的花费也不小，虽然有免费的二级域名和虚拟主机，但难免不够稳定出现故障，难以维护。</p>
+<p>所以最后我选择了在线托管类博客平台，<font color ="orange">Gridea</font>、<font color ="orange">xLog</font>,前者需要订阅，价格为每年10美元，而后者只需要邮箱或者虚拟货币钱包地址即可注册使用，同时该平台还有更多其他优质博主。当然，Gridea客户端可以和Github Pages绑定上传博客，并且开源免费（应该，现在还在试用中🤣）。如果需要自定义域名的话，则两者都需要额外付费。这类服务的最大好处便是免去了维护的成本。如果遇到问题只需要将问题反馈给开发者，等待修复即可。而我们要做的事情，仅仅是写。</p>
+<p>上面的内容，从下往上，大概就是一个从简单到复杂的过程。写博客其实也是从简单到复杂，刚开始时不知道写什么，那就写一写随笔或是学习记录也是十分好的，终有一天再回首，我们可以看到自己的进步。</p>
+<h3 id="从一时兴起到养成习惯"><strong>从一时兴起到养成习惯</strong></h3>
+<p>在今天早上也看到了少数派的一篇文章<a href="https://sspai.com/post/81892"><font color ="red">《启动困难修炼心法》</font></a>。主要讲述了拖延症并不是一种疑难杂症，而是一个可以克服的困难。并就如何克服启动困难给出了自己的建议。主要包括以下几点：<br>
+1. 拒绝预设困难<br>
+2. 降低启动成本：更快开始 / 环境设计<br>
+3. 任务简单化：分解任务 / 5 分钟学习法</p>
+<p>三天打鱼，两天晒网，这可不是一个正确的态度。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://www.zwbgap.me/post/CSAPP_第一章_计算机系统漫游/">
+                <h3 class="post-title">
+                  第一章 计算机系统漫游
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://www.zwbgap.me/images/avatar.png?v=1701063900303" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-quote/">Rust-quote</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-ownership/">Rust-ownership</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-function/">Rust-function</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-statements-and-expressions/">Rust-statements and expressions</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-char-type/">Rust-char type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-numeric-type/">Rust-numeric type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-basic-type/">Rust-basic type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-by-practice1/">Rust-by practice1</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-variable-binding/">Rust-variable binding</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-records-day01/">Rust-about </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge ">
+          rust
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge secondary">
+          学习记录
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/6BEDgZYom/" class="badge secondary">
+          随记
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/O_Ov6_TaM/" class="badge success">
+          周报
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/ZXW-fdLxoS/" class="badge secondary">
+          博客
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAqcXpysJ/" class="badge ">
+          CSAPP
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAIoadUY3/" class="badge secondary">
+          计网
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://www.zwbgap.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

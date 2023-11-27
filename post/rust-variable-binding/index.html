@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Rust-variable binding | Zwbgap&#39;s Blog</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://www.zwbgap.me/favicon.ico?v=1701063900303">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.zwbgap.me/styles/main.css">
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://www.zwbgap.me">Zwbgap&#39;s Blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Rust-variable binding</h1>
+            <p class="article-meta">
+              2023-10-02
+              
+                <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge secondary">
+                  rust
+                </a>
+              
+                <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge ">
+                  学习记录
+                </a>
+              
+            </p>
+            
+              <img src="https://www.zwbgap.me/post-images/rust-variable-binding.jpg" alt="Rust-variable binding">
+            
+            <div class="post-content" v-pre>
+              <h2 id="变量绑定与解构"><strong>变量绑定与解构</strong></h2>
+<h3 id="变量命名"><strong>变量命名</strong></h3>
+<p>在命名方面，和其它语言没有区别，不过当给变量命名时，需要遵循 Rust 命名规范。</p>
+<pre><code>Rust 语言有一些关键字（keywords），和其他语言一样，这些关键字都是被保留给 Rust 语言使用的，因此，它们不能被用作变量或函数的名称。
+</code></pre>
+<p>目前正在使用的关键字</p>
+<ul>
+<li><code>as</code> - 强制类型转换，或use 和 extern crate包和模块引入语句中的重命名</li>
+<li><code>break</code> - 立刻退出循环</li>
+<li><code>const</code> - 定义常量或原生常量指针（constant raw pointer）</li>
+<li><code>continue</code> - 继续进入下一次循环迭代</li>
+<li><code>crate</code> - 链接外部包</li>
+<li><code>dyn</code> - 动态分发特征对象</li>
+<li><code>else</code> - 作为 if 和 if let 控制流结构的 fallback</li>
+<li><code>enum</code> - 定义一个枚举类型</li>
+<li><code>extern</code> - 链接一个外部包,或者一个宏变量(该变量定义在另外一个包中)</li>
+<li><code>false</code> - 布尔值 false</li>
+<li><code>fn</code> - 定义一个函数或 函数指针类型 (function pointer type)</li>
+<li><code>for</code> - 遍历一个迭代器或实现一个 trait 或者指定一个更高级的生命周期</li>
+<li><code>if</code> - 基于条件表达式的结果来执行相应的分支</li>
+<li><code>impl</code> - 为结构体或者特征实现具体功能</li>
+<li><code>in</code> - for 循环语法的一部分</li>
+<li><code>let</code> - 绑定一个变量</li>
+<li><code>loop</code> - 无条件循环</li>
+<li><code>match</code> - 模式匹配</li>
+<li><code>mod</code> - 定义一个模块</li>
+<li><code>move</code> - 使闭包获取其所捕获项的所有权</li>
+<li><code>mut</code> - 在引用、裸指针或模式绑定中使用，表明变量是可变的</li>
+<li><code>pub</code> - 表示结构体字段、impl 块或模块的公共可见性</li>
+<li><code>ref</code> - 通过引用绑定</li>
+<li><code>return</code> - 从函数中返回</li>
+<li><code>Self</code> - 实现特征类型的类型别名</li>
+<li><code>self</code> - 表示方法本身或当前模块</li>
+<li><code>static</code> - 表示全局变量或在整个程序执行期间保持其生命周期</li>
+<li><code>struct</code> - 定义一个结构体</li>
+<li><code>super</code> - 表示当前模块的父模块</li>
+<li><code>trait</code> - 定义一个特征</li>
+<li><code>true</code> - 布尔值 true</li>
+<li><code>type</code> - 定义一个类型别名或关联类型</li>
+<li><code>unsafe</code> - 表示不安全的代码、函数、特征或实现</li>
+<li><code>use</code> - 在当前代码范围内(模块或者花括号对)引入外部的包、模块等</li>
+<li><code>where</code> - 表示一个约束类型的从句</li>
+<li><code>while</code> - 基于一个表达式的结果判断是否继续循环<br>
+保留做将来使用的关键字</li>
+</ul>
+<p>如下关键字没有任何功能，不过由 Rust 保留以备将来的应用。</p>
+<p><code>abstract /</code> <code>async /</code> <code>await /</code> <code>become /</code> <code>box /</code> <code>do /</code> <code>final /</code> <code>macro /</code> <code>override /</code> <code>priv /</code> <code>try /</code> <code>typeof /</code> <code>unsized /</code> <code>virtual /</code> <code>yield</code></p>
+<h4 id="变量绑定"><strong>变量绑定</strong></h4>
+<p>在 Rust 中，我们这样写： let a = &quot;hello world&quot; ，同时给这个过程起了另一个名字：变量绑定。</p>
+<p>这里就涉及 Rust 最核心的原则——所有权，简单来讲，任何内存对象都是有主人的，而且一般情况下完全属于它的主人，绑定就是把这个对象绑定给一个变量，让这个变量成为它的主人（在这种情况下，该对象之前的主人就会丧失对该对象的所有权）。</p>
+<h4 id="变量可变性"><strong>变量可变性</strong></h4>
+<p>Rust 的变量在默认情况下是不可变的。这可以让我们编写的代码更安全，性能也更好。当然也可以通过 mut 关键字让变量变为可变的，让设计更灵活。</p>
+<h5 id="新建项目variables进行测试"><strong>新建项目<code>Variables</code>进行测试</strong></h5>
+<p>在工程目录下使用 <code>cargo new variables</code> 新建一个项目，项目名为 <code>variables</code> 。</p>
+<p>然后在新建的 <code>variables</code> 目录下，编辑 <code>src/main.rs </code>：</p>
+<pre><code class="language-rust">fn main() {
+    let x = 5;
+    println!(&quot;The value of x is: {}&quot;, x);
+    x = 6;
+    println!(&quot;The value of x is: {}&quot;, x);
+}
+</code></pre>
+<p>保存文件进行编译<code>cargo build</code>，会出现错误提示：</p>
+<figure data-type="image" tabindex="1"><img src="https://github.com/zwbgap/LearningOS/blob/main/rustlings/Rust%20Course/2%20%20Basic%20introduction%20to%20Rust/2.1%20Variable%20binding%20and%20destructuring/Document/images/01.png?raw=true" alt="" title="不可变变量重复绑定出错" loading="lazy"></figure>
+<p>具体的错误原因是 <code>cannot assign twice to immutable variable x</code>（无法对不可变的变量进行重复赋值），因为我们想为不可变的 x 变量再次赋值。</p>
+<p>这种错误是为了避免无法预期的错误发生在我们的变量上：一个变量往往被多处代码所使用，其中一部分代码假定该变量的值永远不会改变，而另外一部分代码却无情的改变了这个值，在实际开发过程中，这个错误是很难被发现的，特别是在多线程编程中。</p>
+<p>在 Rust 中，可变性很简单，只要在变量名前加一个 mut 即可(同时这种显式的声明方式还会传达这样的信息：这个变量在后面代码部分会发生改变)。</p>
+<p>为了让变量声明为可变,将 <code>src/main.rs</code> 改为以下内容：</p>
+<pre><code class="language-rust">fn main() {
+    let mut x = 5;
+    println!(&quot;The value of x is: {}&quot;, x);
+    x = 6;
+    println!(&quot;The value of x is: {}&quot;, x);
+}
+</code></pre>
+<p>得到结果：</p>
+<pre><code>$ cargo run
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+     Running `target\debug\variables.exe`
+The value of x is: 5
+The value of x is: 6
+</code></pre>
+<p>选择可变还是不可变，更多的还是取决于你的使用场景，例如不可变可以带来安全性，但是丧失了灵活性和性能（如果你要改变，就要重新创建一个新的变量，这里涉及到内存对象的再分配）。而可变变量最大的好处就是使用上的灵活性和性能上的提升。</p>
+<h4 id="使用下划线开头忽略未使用的变量"><strong>使用下划线开头忽略未使用的变量</strong></h4>
+<p>当我们正在设计原型或刚刚开始一个项目。这时希望告诉 Rust 不要警告未使用的变量，为此可以用下划线作为变量名的开头：</p>
+<pre><code class="language-rust">fn main() {
+    let _x = 5;
+    let y = 10;
+}
+</code></pre>
+<p>编译运行得到结果：<br>
+<img src="https://github.com/zwbgap/LearningOS/blob/main/rustlings/Rust%20Course/2%20%20Basic%20introduction%20to%20Rust/2.1%20Variable%20binding%20and%20destructuring/Document/images/02.png?raw=true" alt="" title="使用下划线忽略未使用的变量" loading="lazy"></p>
+<h3 id="变量解构"><strong>变量解构</strong></h3>
+<p>let 表达式不仅仅用于变量的绑定，还能进行复杂变量的解构：从一个相对复杂的变量中，匹配出该变量的一部分内容：</p>
+<pre><code class="language-rust">fn main() {
+    let (a, mut b): (bool,bool) = (true, false);
+    // a = true,不可变; b = false，可变
+    println!(&quot;a = {:?}, b = {:?}&quot;, a, b);
+
+    b = true;
+    assert_eq!(a, b);
+}
+</code></pre>
+<p>编译运行结果：<br>
+<code>a = true, b = false</code></p>
+<h4 id="解构式赋值"><strong>解构式赋值</strong></h4>
+<p>在赋值语句的左式中使用元组、切片和结构体模式，这种赋值方式被称为解构式赋值（destructuring assignment）。</p>
+<pre><code class="language-rust">struct Struct {
+    e: i32
+}
+
+fn main() {
+    let (a, b, c, d, e);
+
+    (a, b) = (1, 2);
+    // _ 代表匹配一个值，但是我们不关心具体的值是什么，因此没有使用一个变量名而是使用了 _
+    [c, .., d, _] = [1, 2, 3, 4, 5];
+    Struct { e, .. } = Struct { e: 5 };
+
+    assert_eq!([1, 2, 1, 4, 5], [a, b, c, d, e]);
+}
+</code></pre>
+<p>需要注意的是，使用 <code>+=</code> 的赋值语句还不支持解构式赋值。<br>
+(在阅读过程中虽然暂时看不懂该模式匹配的语法，但并不妨碍对解构式赋值的了解。)</p>
+<h4 id="通过github-copilot对该函数的理解"><strong>通过Github Copilot对该函数的理解：</strong></h4>
+<p>这段 Rust 代码演示了解构的用法。首先定义了一个结构体 <code>Struct</code>，其中包含一个 i32 类型的字段 e。然后在 <code>main</code> 函数中，定义了五个变量 a、b、c、d 和 e，但是没有给它们赋值。</p>
+<p>接着，使用解构将 (1, 2) 中的值分别赋给 a 和 b。这里的括号可以省略，因为解构的语法本身就可以表示一个元组。</p>
+<p>然后，使用解构将 [1, 2, 3, 4, 5] 中的第一个值赋给 c，最后一个值赋给 _（这里使用 _ 表示我们不关心具体的值是什么），中间的值赋给 d。这里使用了 Rust 中的 <code>slice</code> 模式，其中 .. 表示匹配任意数量的元素。</p>
+<p>最后，使用解构将 <code>Struct { e: 5 }</code> 中的 e 字段的值赋给 e。这里使用了 Rust 中的结构体模式，其中 .. 表示匹配结构体中的其它字段，但是我们不关心它们的值。</p>
+<p>最后，使用 <code>assert_eq!</code> 宏检查解构后的变量值是否与预期值相等。如果相等，则程序正常退出，否则会抛出一个 panic。</p>
+<h3 id="变量和常量之间的关系"><strong>变量和常量之间的关系</strong></h3>
+<p>与不可变变量一样，常量也是绑定到一个常量名且不允许更改的值，但是常量和不可变变量之间存在一些差异：</p>
+<ul>
+<li>常量不允许使用 mut。常量不仅仅默认不可变，而且自始至终不可变，因为常量在编译完成后，已经确定它的值。</li>
+<li>常量使用 const 关键字而不是 let 关键字来声明，并且值的类型必须标注。</li>
+</ul>
+<p>下面是一个常量声明的例子，其常量名为 MAX_POINTS，值设置为 100,000。（Rust 常量的命名约定是全部字母都使用大写，并使用下划线分隔单词，另外对数字字面量可插入下划线以提高可读性）：</p>
+<p><code>const MAX_POINTS: u32 = 100_000;</code></p>
+<p>常量可以在任意作用域内声明，包括全局作用域，在声明的作用域内，常量在程序运行的整个过程中都有效。</p>
+<h3 id="变量遮蔽shadowing"><strong>变量遮蔽(shadowing)</strong></h3>
+<p>Rust 允许声明相同的变量名，在后面声明的变量会遮蔽掉前面声明的，如下所示：</p>
+<pre><code class="language-rust">fn main() {
+    let x = 5;
+    // 在main函数的作用域内对之前的x进行遮蔽
+    let x = x + 1;
+
+    {
+        // 在当前的花括号作用域内，对之前的x进行遮蔽
+        let x = x * 2;
+        println!(&quot;The value of x in the inner scope is: {}&quot;, x);
+    }
+
+    println!(&quot;The value of x is: {}&quot;, x);
+}
+</code></pre>
+<p>这个程序首先将数值 5 绑定到 x，然后通过重复使用 let x = 来遮蔽之前的 x，并取原来的值加上 1，所以 x 的值变成了 6。第三个 let 语句同样遮蔽前面的 x，取之前的值并乘上 2，得到的 x 最终值为 12。运行此程序：</p>
+<figure data-type="image" tabindex="2"><img src="https://github.com/zwbgap/LearningOS/blob/main/rustlings/Rust%20Course/2%20%20Basic%20introduction%20to%20Rust/2.1%20Variable%20binding%20and%20destructuring/Document/images/03.png?raw=true" alt="" title="变量遮蔽" loading="lazy"></figure>
+<p>这和 mut 变量的使用是不同的，第二个 let 生成了完全不同的新变量，两个变量只是恰好拥有同样的名称，涉及一次内存对象的再分配 ，而 mut 声明的变量，可以修改同一个内存地址上的值，并不会发生内存对象的再分配，性能要更好。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://www.zwbgap.me/post/Flag/">
+                <h3 class="post-title">
+                  国庆之FlAG
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://www.zwbgap.me/images/avatar.png?v=1701063900303" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-quote/">Rust-quote</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-ownership/">Rust-ownership</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-function/">Rust-function</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-statements-and-expressions/">Rust-statements and expressions</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-char-type/">Rust-char type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-numeric-type/">Rust-numeric type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-basic-type/">Rust-basic type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-by-practice1/">Rust-by practice1</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-variable-binding/">Rust-variable binding</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-records-day01/">Rust-about </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge ">
+          rust
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge warning">
+          学习记录
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/6BEDgZYom/" class="badge secondary">
+          随记
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/O_Ov6_TaM/" class="badge warning">
+          周报
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/ZXW-fdLxoS/" class="badge secondary">
+          博客
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAqcXpysJ/" class="badge success">
+          CSAPP
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAIoadUY3/" class="badge secondary">
+          计网
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://www.zwbgap.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

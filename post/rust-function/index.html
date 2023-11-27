@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Rust-function | Zwbgap&#39;s Blog</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://www.zwbgap.me/favicon.ico?v=1701063900303">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.zwbgap.me/styles/main.css">
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://www.zwbgap.me">Zwbgap&#39;s Blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Rust-function</h1>
+            <p class="article-meta">
+              2023-10-03
+              
+                <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge ">
+                  rust
+                </a>
+              
+                <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge success">
+                  学习记录
+                </a>
+              
+            </p>
+            
+              <img src="https://www.zwbgap.me/post-images/rust-function.jpg" alt="Rust-function">
+            
+            <div class="post-content" v-pre>
+              <h3 id="函数"><strong>函数</strong></h3>
+<p>在函数界，有一个函数只闻其名不闻其声，可以止小孩啼！在程序界只有 hello,world! 可以与之媲美，它就是 add 函数：</p>
+<pre><code class="language-Rust">fn add(i: i32, j: i32) -&gt; i32 {
+   i + j
+ }
+</code></pre>
+<p>该函数如此简单，但是又是如此的五脏俱全，声明函数的关键字 <code>fn</code> ,函数名 <code>add()</code>，参数 i 和 j，参数类型和返回值类型都是 <code>i32</code>，总之一切那么的普通，但是又那么的自信，直到你看到了下面这张图：<br>
+<img src="https://github.com/zwbgap/LearningOS/blob/main/rustlings/Day03/Documents/images/01.png?raw=true" alt="" title="函数解析" loading="lazy"></p>
+<h4 id="函数要点"><strong>函数要点</strong></h4>
+<ul>
+<li>函数名和变量名使用蛇形命名法(snake case)，例如 <code>fn add_two() -&gt; {}</code></li>
+<li>函数的位置可以随便放，Rust 不关心我们在哪里定义了函数，只要有定义即可</li>
+<li>每个函数参数都需要标注类型</li>
+</ul>
+<h4 id="函数参数"><strong>函数参数</strong></h4>
+<p>Rust 是强类型语言，因此需要你为每一个函数参数都标识出它的具体类型，例如：</p>
+<pre><code class="language-rust">fn main() {
+    another_function(5, 6.1);
+}
+
+fn another_function(x: i32, y: f32) {
+    println!(&quot;The value of x is: {}&quot;, x);
+    println!(&quot;The value of y is: {}&quot;, y);
+}
+</code></pre>
+<p>another_function 函数有两个参数，其中 x 是 i32 类型，y 是 f32 类型，然后在该函数内部，打印出这两个值。这里去掉 x 或者 y 的任何一个的类型，都会报错。</p>
+<h4 id="函数返回"><strong>函数返回</strong></h4>
+<p>在 Rust 中函数就是表达式，因此我们可以把函数的返回值直接赋给调用者。</p>
+<p>函数的返回值就是函数体最后一条表达式的返回值，当然我们也可以使用 return 提前返回，下面的函数使用最后一条表达式来返回一个值：</p>
+<pre><code class="language-rust">fn plus_five(x:i32) -&gt; i32 {
+    x + 5
+}
+fn main() {
+    let x = plus_five(5);
+
+    println!(&quot;The value of x is: {}&quot;, x);
+}
+Output:
+The value of x is: 10
+</code></pre>
+<p>重点：</p>
+<ol>
+<li><code>let x = plus_five(5)</code>，说明我们用一个函数的返回值来初始化 x 变量，因此侧面说明了在 Rust 中函数也是表达式，这种写法等同于 <code>let x = 5 + 5</code>;</li>
+<li><code>x + 5</code> 没有分号，因为它是一条表达式。</li>
+</ol>
+<p>也可使用<code>return</code>关键字表达式作为返回值，例如：</p>
+<pre><code class="language-rust">fn plus_or_minus(x:i32) -&gt; i32 {
+    if x &gt; 5 {
+        return x - 5
+    }
+    x + 5
+}
+
+fn main() {
+    let x = plus_or_minus(6);
+
+    println!(&quot;The value of x is: {}&quot;, x);
+}
+Output:
+The value of x is: 1
+</code></pre>
+<p><code>plus_or_minus</code> 函数根据传入 x 的大小来决定是做加法还是减法，若 <code>x &gt; 5</code> 则通过 <code>return</code> 提前返回 <code>x - 5</code> 的值,否则返回 <code>x + 5</code> 的值。</p>
+<h4 id="rust中的特殊返回类型"><strong>Rust中的特殊返回类型</strong></h4>
+<h5 id="无返回值"><strong>无返回值()</strong></h5>
+<p>在 Rust 中，有一个特殊的返回类型，即 <code>()</code>，它代表的是无返回值，类似于 C 语言中的 <code>void</code>。</p>
+<p>单元类型 ()，是一个零长度的元组。它没啥作用，但是可以用来表达一个函数没有返回值：</p>
+<ul>
+<li>函数没有返回值，那么返回一个 <code>()</code></li>
+<li>通过 <code>;</code> 结尾的表达式返回一个 <code>()</code></li>
+</ul>
+<p>例如：<br>
+report 函数没有返回值，因此隐式返回一个 <code>()</code>：</p>
+<pre><code class="language-rust">use std::fmt::Debug;
+fn report&lt;T: Debug&gt;(item: T) {
+    println!(&quot;{:?}&quot;, item);
+}
+</code></pre>
+<p>与上面的函数返回值相同，但是下面的函数显式的返回了 <code>()</code>：</p>
+<pre><code class="language-rust">fn clear(text: &amp;mut String) -&gt; () {
+  *text = String::from(&quot;&quot;);
+}
+</code></pre>
+<p>只有表达式能返回值，而 ; 结尾的是语句，在 Rust 中，一定要严格区分表达式和语句的区别，这个在其它语言中往往是被忽视的点。</p>
+<h5 id="永不返回的发散函数"><strong>永不返回的发散函数!</strong></h5>
+<p>Rust 中有一个特殊的返回类型，即 <code>!</code>，它代表的是永不返回，类似于 C 语言中的 <code>while(1)</code>。</p>
+<p>当用 ! 作函数返回类型的时候，表示该函数永不返回( diverge function )，特别的，这种语法往往用做会导致程序崩溃的函数：</p>
+<pre><code class="language-rust">fn dead_end() -&gt; ! {
+  panic!(&quot;你已经到了穷途末路，崩溃吧！&quot;);
+}
+</code></pre>
+<p>下面的函数创建了一个武侠循环，该循环永不跳出，因此函数也永不返回：</p>
+<pre><code class="language-rust">fn forever() -&gt; ! {
+  loop {
+    //...
+  };
+}
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://www.zwbgap.me/post/rust-statements-and-expressions/">
+                <h3 class="post-title">
+                  Rust-statements and expressions
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://www.zwbgap.me/images/avatar.png?v=1701063900303" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-quote/">Rust-quote</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-ownership/">Rust-ownership</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-function/">Rust-function</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-statements-and-expressions/">Rust-statements and expressions</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-char-type/">Rust-char type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-numeric-type/">Rust-numeric type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-basic-type/">Rust-basic type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-by-practice1/">Rust-by practice1</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-variable-binding/">Rust-variable binding</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-records-day01/">Rust-about </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge warning">
+          rust
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge warning">
+          学习记录
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/6BEDgZYom/" class="badge success">
+          随记
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/O_Ov6_TaM/" class="badge success">
+          周报
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/ZXW-fdLxoS/" class="badge secondary">
+          博客
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAqcXpysJ/" class="badge secondary">
+          CSAPP
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAIoadUY3/" class="badge secondary">
+          计网
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://www.zwbgap.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

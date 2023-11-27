@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Rust-char type | Zwbgap&#39;s Blog</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://www.zwbgap.me/favicon.ico?v=1701063900303">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.zwbgap.me/styles/main.css">
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://www.zwbgap.me">Zwbgap&#39;s Blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Rust-char type</h1>
+            <p class="article-meta">
+              2023-10-03
+              
+                <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge success">
+                  rust
+                </a>
+              
+                <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge warning">
+                  学习记录
+                </a>
+              
+            </p>
+            
+              <img src="https://www.zwbgap.me/post-images/rust-char-type.jpg" alt="Rust-char type">
+            
+            <div class="post-content" v-pre>
+              <h3 id="字符-布尔-单元类型"><strong>字符、布尔、单元类型</strong></h3>
+<h4 id="字符类型char"><strong>字符类型(char)</strong></h4>
+<p>Rust 中的字符类型是 <code>char</code>，它是 Unicode 标量值（Unicode Scalar Value）的有效集合，这意味着它可以比 ASCII 表示更多的内容。<code>char</code> 类型用单引号标记，而不是双引号，如下所示：</p>
+<pre><code class="language-rust">fn main() {
+    let c = 'z';
+    let z = 'ℤ';
+    let g = '国';
+    let heart_eyed_cat = '😻';
+}
+</code></pre>
+<p>同时由于<code>unicode</code>都是4个字节编码，所以<code>char</code>类型也是4个字节，所以可以使用<code>std::mem::size_of_val</code>来获取<code>char</code>类型的字节大小：</p>
+<pre><code class="language-rust">fn main() {
+    let x = '中';
+    println!(&quot;字符'中'占用了{}字节的内存大小&quot;,std::mem::size_of_val(&amp;x));
+}
+Output:
+字符'中'占用了4字节的内存大小
+</code></pre>
+<p>注意，Rust 的字符只能用 <code>''</code> 来表示， <code>&quot;&quot;</code> 是留给字符串的。</p>
+<h4 id="布尔类型bool"><strong>布尔类型(bool)</strong></h4>
+<p>Rust 中的布尔类型是 <code>bool</code>，它的值是 <code>true</code> 和 <code>false</code>，两者都是关键字。如下所示：</p>
+<pre><code class="language-rust">fn main() {
+    let t = true;
+    let f: bool = false; // 显式指定类型注解
+    if f {
+        println!(&quot;f is true&quot;);
+    } else {
+        println!(&quot;f is false&quot;);
+    }
+}
+</code></pre>
+<p>使用布尔类型的场景主要在于流程控制。</p>
+<h4 id="单元类型unit"><strong>单元类型(unit)</strong></h4>
+<p>Rust 中的单元类型是 <code>()</code>，它只有一个值，也就是空元组。它用于表示不返回值的函数的返回值，也用于表示其他语言中的 <code>void</code> 类型。如下所示：</p>
+<pre><code class="language-rust">fn main() {
+    let x = 5;
+    let y = {
+        let x = 3;
+        x + 1 // 注意这里没有分号
+    };
+    println!(&quot;y的值为: {}&quot;, y);
+    let z = another_function();
+    println!(&quot;z的值为: {:?}&quot;, z);
+}
+Output:
+y的值为: 4
+z的值为: ()
+</code></pre>
+<p>注意，<code>()</code> 是一个值，它占用 0 字节大小，因为它不需要存储数据。</p>
+<p><code>main</code> 函数就返回这个单元类型 <code>()</code>你不能说 <code>main</code> 函数无返回值，因为没有返回值的函数在 Rust 中是有单独的定义的：发散函数( <code>diverge function</code> )，顾名思义，无法收敛的函数。</p>
+<p>例如常见的 println!() 的返回值也是单元类型 ()。</p>
+<p>再比如，你可以用 <code>()</code> 作为 <code>map</code> 的值，表示我们不关注具体的值，只关注 <code>key</code>。 这种用法和 Go 语言的 <code>struct{}</code> 类似，可以作为一个值用来占位，但是完全不占用任何内存。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://www.zwbgap.me/post/rust-numeric-type/">
+                <h3 class="post-title">
+                  Rust-numeric type
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://www.zwbgap.me/images/avatar.png?v=1701063900303" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-quote/">Rust-quote</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-ownership/">Rust-ownership</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-function/">Rust-function</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-statements-and-expressions/">Rust-statements and expressions</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-char-type/">Rust-char type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-numeric-type/">Rust-numeric type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-basic-type/">Rust-basic type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-by-practice1/">Rust-by practice1</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-variable-binding/">Rust-variable binding</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-records-day01/">Rust-about </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge secondary">
+          rust
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge success">
+          学习记录
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/6BEDgZYom/" class="badge secondary">
+          随记
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/O_Ov6_TaM/" class="badge secondary">
+          周报
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/ZXW-fdLxoS/" class="badge success">
+          博客
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAqcXpysJ/" class="badge secondary">
+          CSAPP
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAIoadUY3/" class="badge secondary">
+          计网
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://www.zwbgap.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

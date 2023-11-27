@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Rust-by practice1 | Zwbgap&#39;s Blog</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://www.zwbgap.me/favicon.ico?v=1701063900303">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.zwbgap.me/styles/main.css">
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://www.zwbgap.me">Zwbgap&#39;s Blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Rust-by practice1</h1>
+            <p class="article-meta">
+              2023-10-02
+              
+                <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge secondary">
+                  rust
+                </a>
+              
+                <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge ">
+                  学习记录
+                </a>
+              
+            </p>
+            
+              <img src="https://www.zwbgap.me/post-images/rust-by-practice1.jpg" alt="Rust-by practice1">
+            
+            <div class="post-content" v-pre>
+              <h3 id="变量绑定与解构"><strong>变量绑定与解构</strong></h3>
+<h4 id="绑定和可变性"><strong>&gt; 绑定和可变性</strong></h4>
+<h5 id="1变量只有在初始化后才能被使用"><strong>1.🌟变量只有在初始化后才能被使用</strong></h5>
+<pre><code class="language-rust">// 修复下面代码的错误并尽可能少的修改
+fn main() {
+    let x: i32; // 未初始化，但被使用
+    let y: i32; // 未初始化，也未被使用
+    println!(&quot;x is equal to {}&quot;, x); 
+}
+</code></pre>
+<p><strong>update:</strong></p>
+<pre><code class="language-rust">fn main() {
+    let x: i32 = 0; // 未初始化，但被使用
+    let _y: i32; // 未初始化，也未被使用
+    println!(&quot;x is equal to {}&quot;, x); 
+}
+output:
+x is equal to 0
+</code></pre>
+<h5 id="2可以使用-mut-将变量标记为可变"><strong>2.🌟🌟可以使用 mut 将变量标记为可变</strong></h5>
+<pre><code class="language-rust">// 完形填空，让代码编译
+fn main() {
+    let __ = 1;
+    __ += 2; 
+    
+    println!(&quot;x = {}&quot;, x); 
+}
+</code></pre>
+<p><strong>update:</strong></p>
+<pre><code class="language-rust">fn main() {
+    let mut x = 1;
+    x += 2; 
+    /*
+    let x = 1;
+    !!!--let x += + 2;-- 该行编译出错
+    let x = x + 2;
+     */
+    println!(&quot;x = {}&quot;, x); 
+}
+output:
+x = 3
+</code></pre>
+<p><font color="red"><code>let x += + 2;</code> 编译出错</font></p>
+<pre><code> --&gt; src/main.rs:5:11
+  |
+5 |     let x += 2;
+  |           ^^ help: initialize the variable
+  |
+  = help: if you meant to overwrite, remove the `let` binding
+</code></pre>
+<h4 id="变量作用域"><strong>&gt; 变量作用域</strong></h4>
+<h5 id="3作用域是一个变量在程序中能够保持合法的范围"><strong>3.🌟作用域是一个变量在程序中能够保持合法的范围</strong></h5>
+<pre><code class="language-rust">// 修复下面代码的错误并使用尽可能少的改变
+fn main() {
+    let x: i32 = 10;
+    {
+        let y: i32 = 5;
+        println!(&quot;x 的值是 {}, y 的值是 {}&quot;, x, y);
+    }
+    println!(&quot;x 的值是 {}, y 的值是 {}&quot;, x, y); 
+}
+</code></pre>
+<p><strong>update:</strong></p>
+<pre><code class="language-rust">fn main() {
+    let x: i32 = 10;
+    let y: i32 = 0;
+    {
+        y: i32 = 5;
+        println!(&quot;x 的值是 {}, y 的值是 {}&quot;, x, y);
+    }
+    println!(&quot;x 的值是 {}, y 的值是 {}&quot;, x, y); 
+}
+output:
+x 的值是 10, y 的值是 5
+x 的值是 10, y 的值是 0
+</code></pre>
+<p>第一次修改是将let改为const,发现常量也会因为作用域范围而报错。此做法实属脑子一热，白痴行为。</p>
+<h5 id="4"><strong>4.🌟🌟</strong></h5>
+<pre><code class="language-rust">// 修复错误
+fn main() {
+    println!(&quot;{}, world&quot;, define_x()); 
+}
+
+fn define_x() {
+    let x = &quot;hello&quot;;
+}
+</code></pre>
+<p><strong>update:</strong></p>
+<pre><code class="language-rust">fn main() {
+    let x = define_x();
+    println!(&quot;{}, world&quot;, x); 
+}
+
+fn define_x() -&gt; String{
+    let x = &quot;hello&quot;.to_string();
+    x
+}
+output:
+hello, world
+</code></pre>
+<h4 id="变量遮蔽shadowing"><strong>&gt; 变量遮蔽(shadowing)</strong></h4>
+<h5 id="5-若后面的变量声明的名称和之前的变量相同则我们说第一个变量被第二个同名变量遮蔽了-shadowing"><strong>5.🌟🌟 若后面的变量声明的名称和之前的变量相同，则我们说：第一个变量被第二个同名变量遮蔽了( shadowing )</strong></h5>
+<pre><code class="language-rust">// 只允许修改 `assert_eq!` 来让 `println!` 工作(在终端输出 `42`)
+fn main() {
+    let x: i32 = 5;
+    {
+        let x = 12;
+        assert_eq!(x, 5);
+    }
+
+    assert_eq!(x, 12);
+
+    let x = 42;
+    println!(&quot;{}&quot;, x); // 输出 &quot;42&quot;.
+}
+</code></pre>
+<p><strong>update:</strong></p>
+<pre><code class="language-rust">fn main() {
+    let x: i32 = 5;
+    {
+        let x = 12;
+        assert_eq!(x, 12);
+    }
+    assert_eq!(x, 5);
+    //assert_eq!(x, 5) 是 Rust 中的一个宏，用于断言 x 的值是否等于 5。
+    //如果 x 不等于 5，则会抛出一个 panic。这个宏通常用于测试代码中，以确保代码的正确性。
+    let x = 42;
+    println!(&quot;{}&quot;, x); // 输出 &quot;42&quot;.
+}
+output:
+42
+</code></pre>
+<h5 id="6修改一行代码以通过编译"><strong>6.🌟🌟修改一行代码以通过编译</strong></h5>
+<pre><code class="language-rust">fn main() {
+    let mut x: i32 = 1;
+    x = 7;
+    // 遮蔽且再次绑定
+    let x = x; 
+    x += 3;
+
+
+    let y = 4;
+    // 遮蔽
+    let y = &quot;I can also be bound to text!&quot;; 
+}
+</code></pre>
+<p><strong>update:</strong></p>
+<pre><code class="language-rust">fn main() {
+    let mut x: i32 = 1;
+    x = 7;
+    // 遮蔽且再次绑定
+    let mut x = x; 
+    x += 3;
+    //设置x为可变变量，否则编译出错
+    let y = 4;
+    // 遮蔽
+    let y = &quot;I can also be bound to text!&quot;; 
+    println!(&quot;Success!&quot;);
+}
+output:
+Success!
+</code></pre>
+<h4 id="未使用的变量"><strong>&gt; 未使用的变量</strong></h4>
+<h5 id="7修复编译器输出的-warning"><strong>7.🌟🌟修复编译器输出的 warning :</strong></h5>
+<pre><code class="language-rust">//注意: 你可以使用两种方法解决,但是它们没有一种是移除 let x = 1 所在的代码行
+fn main() {
+    let x = 1; 
+}
+// compiler warning: unused variable: `x`
+</code></pre>
+<p><strong>update:</strong></p>
+<pre><code class="language-rust">fn main() {
+    let _x = 1;
+}
+/*
+//有待进一步学习
+#[allow(unused_variables)]
+fn main() {
+    let x = 1;
+}*/
+</code></pre>
+<h4 id="变量解构"><strong>&gt; 变量解构</strong></h4>
+<h5 id="8我们可以将-let-跟一个模式一起使用来解构一个元组最终将它解构为多个独立的变量"><strong>8.🌟🌟🌟我们可以将 let 跟一个模式一起使用来解构一个元组，最终将它解构为多个独立的变量</strong></h5>
+<pre><code class="language-rust">// 修复下面代码的错误并尽可能少的修改
+fn main() {
+    let (x, y) = (1, 2);
+    x += 2;
+
+    assert_eq!(x, 3);
+    assert_eq!(y, 2);
+    println!(&quot;Success!&quot;);
+}
+
+</code></pre>
+<p><strong>update:</strong></p>
+<pre><code class="language-rust">fn main() {
+    let (mut x, y) = (1, 2);
+    x += 2;
+
+    assert_eq!(x, 3);
+    assert_eq!(y, 2);
+    println!(&quot;Success!&quot;);
+}
+/*
+fn main() {
+    let (x, y) = (1, 2);
+    let x = 3;
+    assert_eq!(x, 3);
+    assert_eq!(y, 2);
+    println!(&quot;Success!&quot;);
+}
+*/
+output:
+Success!
+</code></pre>
+<h4 id="解构式赋值"><strong>解构式赋值</strong></h4>
+<h5 id="9解构式赋值只能在-rust-159-或者更高版本中使用"><strong>9.🌟🌟解构式赋值只能在 Rust 1.59 或者更高版本中使用</strong></h5>
+<pre><code class="language-rust">fn main() {
+    let (x, y);
+    (x,..) = (3, 4);
+    [.., y] = [1, 2];
+    // 填空，让代码工作
+    assert_eq!([x,y], __);
+} 
+</code></pre>
+<p><strong>update:</strong></p>
+<pre><code class="language-rust">fn main() {
+    let (x, y);
+    (x, ..) = (3, 4);
+    [.., y] = [1, 2];
+    // fill the blank to make the code work
+    assert_eq!([x, y], [3, 2]);
+}
+</code></pre>
+<h4 id="通过github-copilot对解构式的理解"><strong>通过<code>Github Copilot</code>对解构式的理解：</strong></h4>
+<p>Rust 中的解构（Destructuring）是一种方便的语法，可以将一个复合类型（如元组、结构体、枚举等）中的值绑定到变量中。解构可以让代码更加简洁易读，同时也可以提高代码的可维护性。</p>
+<p>下面是一个例子，展示了如何使用解构来获取元组中的值：</p>
+<pre><code class="language-rust">let tuple = (1, &quot;hello&quot;, true);
+let (a, b, c) = tuple;
+println!(&quot;a = {}, b = {}, c = {}&quot;, a, b, c);
+</code></pre>
+<p>在这个例子中，我们首先创建了一个元组 tuple，然后使用解构将元组中的值分别绑定到变量 a、b 和 c 中。最后，我们打印了这三个变量的值。</p>
+<p>除了元组，我们还可以使用解构来获取结构体中的值。例如：</p>
+<pre><code class="language-rust">struct Point {
+    x: i32,
+    y: i32,
+}
+
+let point = Point { x: 1, y: 2 };
+let Point { x, y } = point;
+println!(&quot;x = {}, y = {}&quot;, x, y);
+</code></pre>
+<p>在这个例子中，我们首先定义了一个结构体 Point，然后创建了一个 point 实例。接着，我们使用解构将 point 中的 x 和 y 值分别绑定到变量 x 和 y 中。最后，我们打印了这两个变量的值。</p>
+<p>除了元组和结构体，我们还可以使用解构来获取枚举中的值。例如：</p>
+<pre><code class="language-rust">enum Color {
+    Red,
+    Green,
+    Blue,
+}
+
+let color = Color::Red;
+let Color::Red = color;
+println!(&quot;color is red&quot;);
+</code></pre>
+<p>在这个例子中，我们首先定义了一个枚举 Color，然后创建了一个 color 实例。接着，我们使用解构将 color 中的 Red 成员绑定到 Color::Red 中。最后，我们打印了一条消息，表明 color 是红色的。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://www.zwbgap.me/post/rust-variable-binding/">
+                <h3 class="post-title">
+                  Rust-variable binding
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://www.zwbgap.me/images/avatar.png?v=1701063900303" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-quote/">Rust-quote</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-ownership/">Rust-ownership</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-function/">Rust-function</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-statements-and-expressions/">Rust-statements and expressions</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-char-type/">Rust-char type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-numeric-type/">Rust-numeric type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-basic-type/">Rust-basic type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-by-practice1/">Rust-by practice1</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-variable-binding/">Rust-variable binding</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-records-day01/">Rust-about </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge secondary">
+          rust
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge secondary">
+          学习记录
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/6BEDgZYom/" class="badge secondary">
+          随记
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/O_Ov6_TaM/" class="badge warning">
+          周报
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/ZXW-fdLxoS/" class="badge ">
+          博客
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAqcXpysJ/" class="badge ">
+          CSAPP
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAIoadUY3/" class="badge secondary">
+          计网
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://www.zwbgap.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

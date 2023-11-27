@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Rust-about  | Zwbgap&#39;s Blog</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://www.zwbgap.me/favicon.ico?v=1701063900303">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.zwbgap.me/styles/main.css">
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://www.zwbgap.me">Zwbgap&#39;s Blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Rust-about </h1>
+            <p class="article-meta">
+              2023-09-30
+              
+                <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge success">
+                  rust
+                </a>
+              
+                <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge secondary">
+                  学习记录
+                </a>
+              
+            </p>
+            
+              <img src="https://www.zwbgap.me/post-images/rust-records-day01.jpg" alt="Rust-about ">
+            
+            <div class="post-content" v-pre>
+              <h2 id="day01"><strong>Day01</strong></h2>
+<h3 id="rust历史了解"><strong>Rust历史了解</strong></h3>
+<h4 id="有趣的开发经历"><strong>有趣的开发经历</strong></h4>
+<p>在 2006 年的某天，作者工作到精疲力尽后，本想回公寓享受下生活，结果发现电梯的程序出 Bug 崩溃了，要知道在国外，修理工可不像在中国那样随时待岗，还要知道，他家在 20 多楼！最后，他选择了妥协，去酒店待几天等待电梯的修理。</p>
+<p>当然，一般人可能就这样算了，毕竟忍几天就过去了嘛。但是这名伟大的程序员显然也不是一般人，他面对害他流离失所的电梯拿起了屠龙宝刀 - Rust。</p>
+<p>自此，劈开一个全新的编程世界。</p>
+<h4 id="rust效率"><strong>Rust效率</strong></h4>
+<h5 id="学习效率">学习效率</h5>
+<p>通过了解，Rust的学习曲线不可谓不陡峭。</p>
+<p>Rust 之难，不在于语言特性，这些都可以很容易学到，而在于：</p>
+<ul>
+<li>实践中如何融会贯通的运用</li>
+<li>遇到了坑时（生命周期、借用错误，自引用等）如何迅速、正确的解决</li>
+</ul>
+<ul>
+<li>大量的标准库方法记忆及熟练使用，这些是保证开发效率的关键<br>
+心智负担较重，特别是初中级阶段</li>
+</ul>
+<h5 id="运行效率">运行效率</h5>
+<p>得益于各种零开销抽象、深入到底层的优化潜力、优质的标准库和第三方库实现，Rust 具备非常优秀的性能，和 C、C++ 是 一个级别。</p>
+<p>同时 Rust 有一个极大的优点：只要按照正确的方式使用 Rust，无需性能优化，就能有非常优秀的表现，不可谓不惊艳。</p>
+<h5 id="开发效率">开发效率</h5>
+<p>Rust 的开发效率可以用先抑后扬来形容。</p>
+<p>当你熟悉各种标准库、生命周期和所有权的常用解决方法，乃至形成肌肉记忆时，开发效率将大大提升，可以写出高质量的原生代码了。</p>
+<h4 id="总结"><strong>总结</strong></h4>
+<p>连续 6 年最受欢迎的语言当然不是浪得虚名。 无 GC、效率高、工程性强、强安全性以及能同时得到工程派和学院派认可，这些令 Rust 拥有了自己的特色和生存空间。社区的友善，生态的快速发展，大公司的重仓跟进，一切的一切都在说明 Rust 的璀璨未来。</p>
+<h4 id="学习过程中的建议"><strong>学习过程中的建议</strong></h4>
+<ul>
+<li>要提前做好会遇到困难的准备，因为如上所说，学习 Rust 不仅仅是在学习一门编程语言</li>
+<li>不要抱着试一试的心态去试一试，否则是浪费时间和消耗学习激情，作为连续七年荣获全世界最受喜欢桂冠的语言，Rust 不仅仅是值得试一试 😃</li>
+<li>深入学习一本好书或教程</li>
+</ul>
+<p>历经九九八十一难，立地成大佬。(哈哈😀，作者真是十分有趣)</p>
+<h3 id="关于rust的安装和配置"><strong>关于Rust的安装和配置</strong></h3>
+<h4 id="windows下安装"><strong>Windows下安装</strong></h4>
+<p>因为个人使用windows系统，所以只记录windows下的rust安装，且并非标准。</p>
+<p>Windows 上安装 Rust 需要有 C++ 环境，以下为安装的两种方式：</p>
+<p><strong>1. x86_64-pc-windows-msvc（官方推荐）</strong></p>
+<!-- more -->
+<p>先安装 <code>Microsoft C++ Build Tools</code>，勾选安装 C++ 环境即可。安装时可自行修改缓存路径与安装路径。安装完成后，Rust 所需的 msvc 命令行程序需要手动添加到环境变量中，否则安装 Rust 时 rustup-init 会提示未安装 Microsoft C++ Build Tools，其位于：<code>%Visual Studio 安装位置%\VC\Tools\MSVC\%version%\bin\Hostx64\x64</code>（请自行替换其中的 %Visual Studio 安装位置%、%version% 字段）下。</p>
+<p>如果你不想这么做，可以选择安装 Microsoft C++ Build Tools 新增的“定制”终端 <code>Developer Command Prompt for %Visual Studio version%</code> 或 <code>Developer PowerShell for %Visual Studio version%</code>，在其中运行 <code>rustup-init.exe</code>。</p>
+<p>准备好 C++ 环境后开始安装 Rust：</p>
+<p>在 RUSTUP-INIT 下载系统相对应的 Rust 安装程序，一路默认即可。</p>
+<pre><code>PS C:\Users\Hehongyuan&gt; rustup-init.exe
+......
+Current installation options:
+
+   default host triple: x86_64-pc-windows-msvc
+     default toolchain: stable (default)
+               profile: default
+  modify PATH variable: yes
+
+1) Proceed with installation (default)
+2) Customize installation
+3) Cancel installation
+</code></pre>
+<h4 id="linux"><strong>Linux</strong></h4>
+<p>Linux环境为VMware虚拟机建立虚拟环境，其中磁盘映像由<code>rCore-Tutorial-Book-v3</code>实验文档所提供,其中Rust以及C语言相关环境已经配置完全。故没有了解其安装方式，后续若有需要会学习。</p>
+<h4 id="更新和卸载"><strong>更新和卸载</strong></h4>
+<p>检查是否安装成功</p>
+<pre><code>$ rustc -V
+rustc 1.72.1 (d5c2e9c34 2023-09-13)
+$ cargo -V
+rustc 1.72.1 (d5c2e9c34 2023-09-13)
+</code></pre>
+<p>更新</p>
+<p><code>$ rustup update</code></p>
+<p>卸载</p>
+<p><code>$ rustup self uninstall</code></p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://www.zwbgap.me/images/avatar.png?v=1701063900303" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-quote/">Rust-quote</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-ownership/">Rust-ownership</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-function/">Rust-function</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-statements-and-expressions/">Rust-statements and expressions</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-char-type/">Rust-char type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-numeric-type/">Rust-numeric type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-basic-type/">Rust-basic type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-by-practice1/">Rust-by practice1</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-variable-binding/">Rust-variable binding</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-records-day01/">Rust-about </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge ">
+          rust
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge ">
+          学习记录
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/6BEDgZYom/" class="badge secondary">
+          随记
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/O_Ov6_TaM/" class="badge ">
+          周报
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/ZXW-fdLxoS/" class="badge secondary">
+          博客
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAqcXpysJ/" class="badge warning">
+          CSAPP
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAIoadUY3/" class="badge ">
+          计网
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://www.zwbgap.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Rust-quote | Zwbgap&#39;s Blog</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://www.zwbgap.me/favicon.ico?v=1701063900303">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.zwbgap.me/styles/main.css">
+
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://www.zwbgap.me">Zwbgap&#39;s Blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Rust-quote</h1>
+            <p class="article-meta">
+              2023-10-05
+              
+                <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge ">
+                  rust
+                </a>
+              
+                <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge ">
+                  学习记录
+                </a>
+              
+            </p>
+            
+              <img src="https://www.zwbgap.me/post-images/rust-quote.jpg" alt="Rust-quote">
+            
+            <div class="post-content" v-pre>
+              <h3 id="引用和借用"><strong>引用和借用</strong></h3>
+<p>Rust 通过<code>借用(Borrowing)</code>这个概念来达成上述的目的，<strong>获取变量的引用，称之为借用(borrowing)</strong>。正如现实生活中，如果一个人拥有某样东西，你可以从他那里借来，当使用完毕后，也必须要物归原主。</p>
+<h4 id="引用和解引用"><strong>引用和解引用</strong></h4>
+<p>常规引用是一个指针类型，指向了对象存储的内存地址。在下面代码中，我们创建一个 i32 值的引用 y，然后使用解引用运算符来解出 y 所使用的值:</p>
+<pre><code class="language-rust">fn main() {
+    let x = 5;
+    let y = &amp;x;
+
+    assert_eq!(5, x);
+    assert_eq!(5, *y);
+}
+</code></pre>
+<p>变量<code>x</code>存放了一个<code>i32</code> 值 5。<code>y</code>是<code>x</code>的一个引用。可以断言<code>x</code>等于 5。然而，如果希望对<code>y</code>的值做出断言，必须使用<code>*y</code>来解出引用所指向的值（也就是解引用）。一旦解引用了<code>y</code>，就可以访问<code>y</code>所指向的整型值并可以与 5 做比较。</p>
+<p>若直接对<code>y</code>做断言，会得到一个错误:</p>
+<pre><code class="language-bash">error[E0277]: can not compare `{integer}` with `&amp;{integer}`
+ --&gt; src/main.rs:6:5
+  |
+6 |     assert_eq!(5, y);
+  |     ^^^^^^^^^^^^^^^^^ no implementation for `{integer} == &amp;{integer}` // 无法比较整数类型和引用类型
+  |
+  = help: the trait `std::cmp::PartialEq&lt;&amp;{integer}&gt;` is not implemented for
+  `{integer}`
+</code></pre>
+<p>这是因为<code>y</code>是一个引用，而不是一个整型值。Rust 无法比较一个整型值和一个引用，因为它们是不同的类型。如果想要比较<code>y</code>的值，必须先解引用<code>y</code>，这样就可以得到一个整型值，然后再与 5 做比较。</p>
+<h4 id="不可变引用"><strong>不可变引用</strong></h4>
+<p>下面的代码，我们用 <code>s1</code>的引用作为参数传递给 <code>calculate_length</code> 函数，而不是把 <code>s1</code> 的所有权转移给该函数：</p>
+<pre><code class="language-rust">fn main() {
+    let s1 = String::from(&quot;hello&quot;);
+
+    let len = calculate_length(&amp;s1);
+
+    println!(&quot;The length of '{}' is {}.&quot;, s1, len);
+}
+
+fn calculate_length(s: &amp;String) -&gt; usize {
+    s.len()
+}
+</code></pre>
+<p>函数签名中的 <code>&amp;</code> 表示参数 <code>s</code> 是一个引用，而不是一个值。因此，无需在函数体中获取 <code>s</code> 的所有权。函数体中的 <code>&amp;s.len()</code> 语法与 <code>s.len()</code> 语法的效果相同，不过 <code>&amp;s.len()</code> 更清晰。接着，我们将 <code>s</code> 的类型修改为 <code>&amp;String</code> 而不是 <code>&amp;str</code>，这样就可以在需要的时候打印出更多有用的信息了：</p>
+<p>注意到两点：</p>
+<ul>
+<li>无需像上章一样：先通过函数参数传入所有权，然后再通过函数返回来传出所有权，代码更加简洁</li>
+<li><code>calculate_length</code>的参数<code>s</code>类型从 <code>String</code> 变为 <code>&amp;String</code></li>
+</ul>
+<p><code>&amp;</code>符号即是引用，它们允许你使用值，但是不获取所有权，如图所示：<br>
+<img src="images/02.jpg" alt="引用" loading="lazy"></p>
+<p>通过 &amp;s1 语法，我们创建了一个指向 s1 的引用，但是并不拥有它。因为并不拥有这个值，当引用离开作用域后，其指向的值也不会被丢弃。</p>
+<p>同理，函数 calculate_length 使用 &amp; 来表明参数 s 的类型是一个引用：</p>
+<pre><code class="language-rust">fn calculate_length(s: &amp;String) -&gt; usize { // s 是对 String 的引用
+    s.len()
+} // 这里，s 离开了作用域。但因为它并不拥有引用值的所有权，
+  // 所以什么也不会发生
+</code></pre>
+<p>如果尝试修改借用的变量：</p>
+<pre><code class="language-rust">fn main() {
+    let s = String::from(&quot;hello&quot;);
+
+    change(&amp;s);
+}
+
+fn change(some_string: &amp;String) {
+    some_string.push_str(&quot;, world&quot;);
+    println!(&quot;{}&quot;, some_string);
+}
+</code></pre>
+<p>会得到一个错误：</p>
+<pre><code class="language-bash">error[E0596]: cannot borrow `*some_string` as mutable, as it is behind a `&amp;` reference
+ --&gt; src/main.rs:8:5
+  |
+7 | fn change(some_string: &amp;String) {
+  |                        ------- help: consider changing this to be a mutable reference: `&amp;mut String`
+                           ------- 帮助：考虑将该参数类型修改为可变的引用: `&amp;mut String`
+8 |     some_string.push_str(&quot;, world&quot;);
+  |     ^^^^^^^^^^^ `some_string` is a `&amp;` reference, so the data it refers to cannot be borrowed as mutable
+                     `some_string`是一个`&amp;`类型的引用，因此它指向的数据无法进行修改
+</code></pre>
+<h4 id="可变引用"><strong>可变引用</strong></h4>
+<p>只需要一个小调整，即可修复上面代码的错误：</p>
+<pre><code class="language-rust">fn main() {
+    let mut s = String::from(&quot;hello&quot;);
+
+    change(&amp;mut s);
+}
+
+fn change(some_string: &amp;mut String) {
+    some_string.push_str(&quot;, world&quot;);
+}
+</code></pre>
+<p>声明 <code>s</code> 是可变类型，其次创建一个可变的引用 <code>&amp;mut s</code> 和接受可变引用参数 <code>some_string: &amp;mut String</code> 的函数。</p>
+<h5 id="可变引用同时只能存在一个"><strong>可变引用同时只能存在一个</strong></h5>
+<p>不过可变引用并不是随心所欲、想用就用的，它有一个很大的限制： <strong>同一作用域，特定数据只能有一个可变引用</strong>：</p>
+<pre><code class="language-rust">let mut s = String::from(&quot;hello&quot;);
+
+let r1 = &amp;mut s;
+let r2 = &amp;mut s;
+
+println!(&quot;{}, {}&quot;, r1, r2);
+</code></pre>
+<p>这段代码会报错的原因是，Rust 不允许在特定作用域中同时存在可变和不可变引用。因为这两个引用都可以修改数据，所以如果同时拥有可变引用就可能造成数据竞争。</p>
+<p>第一个可变借用<code>r1</code>必须要持续到最后一次使用的位置 <code>println!</code>，在 <code>r1</code>创建和最后一次使用之间，我们又尝试创建第二个可变借用<code>r2</code>。</p>
+<p>这种限制的好处就是使 Rust 在编译期就避免数据竞争，数据竞争可由以下行为造成：</p>
+<ul>
+<li>两个或更多的指针同时访问同一数据</li>
+<li>至少有一个指针被用来写入数据</li>
+<li>没有同步数据访问的机制</li>
+</ul>
+<p>数据竞争会导致未定义行为，难以追踪的 bug 和 Rust 无法保证的行为。Rust 通过不允许程序进入存在数据竞争的状态来保证内存安全。</p>
+<p>有时候大括号可以帮我们解决一些编译错误，因为它们允许我们在拥有不同的作用域时，拥有多个可变引用，例如：</p>
+<pre><code class="language-rust">let mut s = String::from(&quot;hello&quot;);
+
+{
+    let r1 = &amp;mut s;
+
+} // r1 在这里离开了作用域，所以我们完全可以创建一个新的引用
+let r2 = &amp;mut s;
+</code></pre>
+<p>这段代码是可以正常运行的，因为拥有不同的作用域，所以可以拥有多个可变引用，但是不能同时拥有。</p>
+<h5 id="可变引用和不可变引用不能同时存在"><strong>可变引用和不可变引用不能同时存在</strong></h5>
+<p>下面的代码也会报错：</p>
+<pre><code class="language-rust">let mut s = String::from(&quot;hello&quot;);
+
+let r1 = &amp;s; // 没问题
+let r2 = &amp;s; // 没问题
+let r3 = &amp;mut s; // 大问题
+
+println!(&quot;{}, {}, and {}&quot;, r1, r2, r3);
+</code></pre>
+<p>错误如下：</p>
+<pre><code class="language-bash">error[E0502]: cannot borrow `s` as mutable because it is also borrowed as immutable
+        // 无法借用可变 `s` 因为它已经被借用了不可变
+ --&gt; src/main.rs:6:14
+  |
+4 |     let r1 = &amp;s; // 没问题
+  |              -- immutable borrow occurs here 不可变借用发生在这里
+5 |     let r2 = &amp;s; // 没问题
+6 |     let r3 = &amp;mut s; // 大问题
+  |              ^^^^^^ mutable borrow occurs here 可变借用发生在这里
+7 |
+8 |     println!(&quot;{}, {}, and {}&quot;, r1, r2, r3);
+  |                                -- immutable borrow later used here 不可变借用在这里使用
+</code></pre>
+<p>这个错误的原因是，可变引用<code>r3</code>在不可变引用<code>r1</code>和<code>r2</code>之后被定义。这种情况下，就不能再创建新的引用了，因为不可变引用的用户并不知道其他的引用。不过反过来先创建可变引用再创建不可变引用就是可行的，因为可变引用的用户可能需要数据是可变的。</p>
+<p>举个例子，正在借用不可变引用的用户，肯定不希望他借用的东西，被另外一个人莫名其妙改变了。多个不可变借用被允许是因为没有人会去试图修改数据，每个人都只读这一份数据而不做修改，因此不用担心数据被污染。</p>
+<blockquote>
+<p>注意，引用的作用域 s 从创建开始，一直持续到它最后一次使用的地方，这个跟变量的作用域有所不同，变量的作用域从创建持续到某一个花括号&quot;}&quot;结束。</p>
+</blockquote>
+<p>事实上，Rust 编译器允许我们同时拥有多个不可变引用，只要它们不在同一作用域内即可。下面的代码是可以正常运行的：</p>
+<pre><code class="language-rust">fn main() {
+   let mut s = String::from(&quot;hello&quot;);
+
+    let r1 = &amp;s;
+    let r2 = &amp;s;
+    println!(&quot;{} and {}&quot;, r1, r2);
+    // 新编译器中，r1,r2作用域在这里结束
+
+    let r3 = &amp;mut s;
+    println!(&quot;{}&quot;, r3);
+} // 老编译器中，r1、r2、r3作用域在这里结束
+  // 新编译器中，r3作用域在这里结束
+</code></pre>
+<p>在老版本的编译器因为<code>r1</code>和<code>r2</code>的作用域在花括号<code>}</code>处结束，那么<code>r3</code>的借用就会触发<strong>无法同时借用可变和不可变的规则</strong>。</p>
+<p>但是在新编译器中，<code>r1</code>和<code>r2</code>的作用域在<code>println!</code>处结束，所以<code>r3</code>的借用就不会触发<strong>无法同时借用可变和不可变的规则</strong>。</p>
+<h4 id="nll"><strong>NLL</strong></h4>
+<p>Rust 2018 版本引入了 NLL（non-lexical lifetimes，非词法生命周期），它可以让编译器更智能地分析引用的作用域，从而避免了一些不必要的错误。上面的代码在新编译器中是可以正常运行的，因为<code>r1</code>和<code>r2</code>的作用域在<code>println!</code>处结束，所以<code>r3</code>的借用就不会触发<strong>无法同时借用可变和不可变的规则</strong>。</p>
+<h4 id="悬垂引用dangling-references"><strong>悬垂引用(Dangling References)</strong></h4>
+<p>悬垂引用（dangling reference）是指当一个引用指向了其数据所在内存已经被释放的空间。为了避免悬垂引用，Rust 编译器确保引用永远也不会变成悬垂状态：当创建了一个指向某个值的引用后，该值将会一直保持被借用状态，直到引用离开了其作用域为止。当你获取数据的引用后，编译器可以确保数据不会在引用结束前被释放，要想释放数据，必须先停止其引用的使用。</p>
+<p>我们尝试创建一个悬垂引用，Rust 会抛出一个编译时错误：</p>
+<pre><code class="language-rust">fn main() {
+    let reference_to_nothing = dangle();
+}
+fn dangle() -&gt; &amp;String { // dangle 返回一个字符串的引用
+    let s = String::from(&quot;hello&quot;); // s 是一个新字符串
+    &amp;s // 返回字符串 s 的引用
+} // 这里 s 离开作用域并被丢弃。其内存被释放。
+  // 危险！
+</code></pre>
+<p>这段代码会报错：</p>
+<pre><code class="language-bash">error[E0106]: missing lifetime specifier
+ --&gt; src/main.rs:5:16
+  |
+5 | fn dangle() -&gt; &amp;String {
+  |                ^ expected named lifetime parameter
+  |
+  = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime
+  |
+5 | fn dangle() -&gt; &amp;'static String {
+  |                ~~~~~~~~
+
+</code></pre>
+<p>这个错误的原因是，我们尝试返回一个<code>String</code>的引用，但是它的值在函数离开作用域后就被释放了，所以编译器不知道该返回什么。</p>
+<h4 id="解引用裸指针"><strong>解引用裸指针</strong></h4>
+<p>仔细看看 dangle 代码的每一步：</p>
+<pre><code class="language-rust">fn dangle() -&gt; &amp;String { // dangle 返回一个字符串的引用
+
+    let s = String::from(&quot;hello&quot;); // s 是一个新字符串
+
+    &amp;s // 返回字符串 s 的引用
+} // 这里 s 离开作用域并被丢弃。其内存被释放。
+  // 危险！
+</code></pre>
+<p>因为<code>s</code>是在<code>dangle</code>函数内创建的，当<code>dangle</code>的代码执行完毕后，<code>s</code>将被释放，但是此时我们又尝试去返回它的引用。这意味着这个引用会指向一个无效的<code>String</code>。</p>
+<p>其中一个很好的解决办法就是直接返回<code>String</code>:</p>
+<pre><code class="language-rust">fn no_dangle() -&gt; String {
+    let s = String::from(&quot;hello&quot;);
+
+    s
+}
+</code></pre>
+<p>最终 <code>String</code> 的所有权被转移给外面的调用者。</p>
+<h4 id="借用规则总结"><strong>借用规则总结</strong></h4>
+<p>总的来说，借用规则如下：</p>
+<ul>
+<li>同一时刻，你只能拥有要么一个可变引用, 要么任意多个不可变引用</li>
+<li>引用必须总是有效的</li>
+</ul>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://www.zwbgap.me/post/rust-ownership/">
+                <h3 class="post-title">
+                  Rust-ownership
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://www.zwbgap.me/images/avatar.png?v=1701063900303" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-quote/">Rust-quote</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-ownership/">Rust-ownership</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-function/">Rust-function</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-statements-and-expressions/">Rust-statements and expressions</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-char-type/">Rust-char type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-numeric-type/">Rust-numeric type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-basic-type/">Rust-basic type</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-by-practice1/">Rust-by practice1</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-variable-binding/">Rust-variable binding</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://www.zwbgap.me/post/rust-records-day01/">Rust-about </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://www.zwbgap.me/tag/vF9iBZUVu/" class="badge secondary">
+          rust
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/sOn5P-epv/" class="badge warning">
+          学习记录
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/6BEDgZYom/" class="badge success">
+          随记
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/O_Ov6_TaM/" class="badge secondary">
+          周报
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/ZXW-fdLxoS/" class="badge ">
+          博客
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAqcXpysJ/" class="badge secondary">
+          CSAPP
+        </a>
+      
+        <a href="https://www.zwbgap.me/tag/hAIoadUY3/" class="badge ">
+          计网
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://www.zwbgap.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>
